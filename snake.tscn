@@ -1,7 +1,17 @@
-[gd_scene format=3 uid="uid://dsjhm1josomyh"]
+[gd_scene load_steps=3 format=3 uid="uid://dsjhm1josomyh"]
+
+[ext_resource type="Script" path="res://snake.gd" id="1_8ybpu"]
+[ext_resource type="Texture2D" uid="uid://b5lyyj426mm1v" path="res://art/boxItemAlt.png" id="1_btkbk"]
 
 [node name="Snake" type="Sprite2D"]
+texture = ExtResource("1_btkbk")
+script = ExtResource("1_8ybpu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
