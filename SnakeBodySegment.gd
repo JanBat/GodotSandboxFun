@@ -17,4 +17,3 @@ func _process(delta):
 	
 func update_direction():
 	pass
-

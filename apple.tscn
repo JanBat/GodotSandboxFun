@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cynh5y17euln8"]
+
+[node name="Apple" type="RigidBody2D"]
