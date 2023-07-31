@@ -21,6 +21,11 @@ window/size/viewport_width=720
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
+[layer_names]
+
+2d_render/layer_1="base"
+2d_render/layer_2="second"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
