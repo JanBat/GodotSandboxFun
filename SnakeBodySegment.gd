@@ -1,7 +1,8 @@
 extends Sprite2D
 
-var speed
 var direction
+var direction_index
+var new_direction_index
 
 var new_direction: Vector2
 
@@ -12,7 +13,7 @@ func _ready():
 
 func _process(delta):
 	# apply movement
-	position += direction * delta
+	pass
 	
 	
 func update_direction():
