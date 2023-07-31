@@ -1,7 +1,26 @@
-[gd_scene format=3 uid="uid://dsjhm1josomyh"]
+[gd_scene load_steps=4 format=3 uid="uid://dsjhm1josomyh"]
 
-[node name="Snake" type="Sprite2D"]
+[ext_resource type="Script" path="res://snake.gd" id="1_arvse"]
+[ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="1_f1mm8"]
+[ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="1_snoij"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Snake" type="Sprite2D" node_paths=PackedStringArray("next_segment")]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_f1mm8")
+script = ExtResource("1_arvse")
+next_segment = NodePath("Children/Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="SnackTimer" type="Timer" parent="."]
+
+[node name="Children" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Children"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_snoij")
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="SnackTimer" to="." method="_on_snack_timer_timeout"]
