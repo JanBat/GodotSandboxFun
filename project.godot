@@ -44,6 +44,11 @@ steer_back={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="base"
+2d_render/layer_2="second"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
