@@ -7,7 +7,6 @@
 
 [node name="Tile_scene" parent="." instance=ExtResource("1_6j0dg")]
 
-[node name="Snake" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_woes0")]
-tile_map = NodePath("../Tile_scene/TileMap")
+[node name="Snake" parent="." instance=ExtResource("2_woes0")]
 
 [editable path="Tile_scene"]
