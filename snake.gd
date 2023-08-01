@@ -90,12 +90,13 @@ func grid_to_local(coord: Vector2):
 	
 	
 func _on_snack_timer_timeout():
-	coins_eaten += 1
+	pass
+	# coins_eaten += 1
 	
 func move():
 	var old_position = position
-	grid_location = grid_location + direction
 	direction = new_direction
+	grid_location = grid_location + direction
 	position = grid_to_local(grid_location)
 	moved.emit(old_position, position)
 	
