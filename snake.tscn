@@ -1,26 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsjhm1josomyh"]
+[gd_scene load_steps=3 format=3 uid="uid://dsjhm1josomyh"]
 
 [ext_resource type="Script" path="res://snake.gd" id="1_arvse"]
 [ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="1_f1mm8"]
-[ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="1_snoij"]
 
-[node name="Snake" type="Sprite2D" node_paths=PackedStringArray("next_segment")]
+[node name="Snake" type="Node2D"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_f1mm8")
-script = ExtResource("1_arvse")
-next_segment = NodePath("Children/Sprite2D")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
 [node name="SnackTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
-[node name="Children" type="Node" parent="."]
+[node name="Segments" type="Node" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Children"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_snoij")
+[node name="Head" type="Sprite2D" parent="Segments" node_paths=PackedStringArray("next_segment")]
+position = Vector2(48, 32)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_f1mm8")
+script = ExtResource("1_arvse")
+next_segment = NodePath("")
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
-[connection signal="timeout" from="SnackTimer" to="." method="_on_snack_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="Segments/Head" method="_on_move_timer_timeout"]
+[connection signal="timeout" from="SnackTimer" to="Segments/Head" method="_on_snack_timer_timeout"]
