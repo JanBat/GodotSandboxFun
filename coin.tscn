@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqtaul20rn73m"]
+
+[ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="1_owvx1"]
+
+[sub_resource type="Curve2D" id="Curve2D_na5s3"]
+
+[node name="Coin" type="Node2D"]
+
+[node name="BrownBlock" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("1_owvx1")
+
+[node name="Particles" type="Node2D" parent="BrownBlock"]
+
+[node name="Path2D" type="Path2D" parent="BrownBlock/Particles"]
+curve = SubResource("Curve2D_na5s3")

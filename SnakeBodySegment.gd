@@ -1,4 +1,4 @@
-class_name SnakeSegment extends Sprite2D
+class_name SnakeSegment extends Area2D
 
 signal moved(from: Vector2, to: Vector2)
 
@@ -8,22 +8,7 @@ var new_direction_index
 
 var new_direction: Vector2
 
-@export var next_segment : Sprite2D
-
-func _init():
-	scale = Vector2(0.2, 0.2)
-	texture = load("res://art/boxCoinAlt.png")
-
-func _ready():
-	pass
-
-func _process(_delta):
-	# apply movement
-	pass
-	
-	
-func update_direction():
-	pass
+@export var next_segment : Area2D
 
 
 # subscribe to movement from prior segments
