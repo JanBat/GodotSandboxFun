@@ -1,7 +1,6 @@
-class_name Snake extends Sprite2D
+class_name Snake extends Area2D
 
-
-const SnakeSegment = preload("res://SnakeBodySegment.gd")
+const SnakeSegment = preload("res://snake_body_segment.tscn")
 
 signal moved(from: Vector2, to: Vector2)
 
@@ -32,7 +31,7 @@ func rotate_clockwise(vector: Vector2):
 		vector.x * 0 + vector.y * 1,
 		vector.x * -1 + vector.y * 0)
 
-@export var next_segment : Sprite2D
+@export var next_segment : Area2D
 @export var tile_map: TileMap
 @export var grid_location: Vector2
 
@@ -63,13 +62,13 @@ func _ready():
 func _on_move_timer_timeout():
 	
 	if coins_eaten:
-		var new_last = SnakeSegment.new()
+		var old_last = last_segment()
+		var new_last = SnakeSegment.instantiate()
 		add_sibling(new_last)
-		new_last.position = last_segment().position
-		new_last.next_segment = null
-		new_last.connect_move_signal(last_segment().moved)
-		last_segment().next_segment = new_last
-		# breakpoint
+		new_last.position = old_last.position
+		# new_last.next_segment = null
+		new_last.connect_move_signal(old_last.moved)
+		old_last.next_segment = new_last
 		coins_eaten -= 1
 	
 	move()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ltotq6qdpdiv"]
+
+[ext_resource type="Script" path="res://SnakeBodySegment.gd" id="1_4644r"]
+[ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="2_lrsa7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15mlp"]
+size = Vector2(57, 60)
+
+[node name="SnakeBodySegment" type="Area2D"]
+script = ExtResource("1_4644r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_15mlp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lrsa7")
