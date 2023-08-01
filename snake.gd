@@ -61,15 +61,18 @@ func _ready():
 
 
 func _on_move_timer_timeout():
-	move()
+	
 	if coins_eaten:
 		var new_last = SnakeSegment.new()
 		add_sibling(new_last)
+		new_last.position = last_segment().position
 		new_last.next_segment = null
 		new_last.connect_move_signal(last_segment().moved)
 		last_segment().next_segment = new_last
 		# breakpoint
 		coins_eaten -= 1
+	
+	move()
 	
 
 func _process(_delta):
