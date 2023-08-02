@@ -19,17 +19,8 @@ const NW = Vector2(-1,0)
 const NE = Vector2(0, 1)
 
 
-# these two rotation functions rotate by PI/2
-func rotate_counter_clockwise(vector: Vector2):
-	return Vector2(
-		vector.x * 0 + vector.y * -1,
-		vector.x * 1 + vector.y * 0
-	)
 
-func rotate_clockwise(vector: Vector2):
-	return Vector2(
-		vector.x * 0 + vector.y * 1,
-		vector.x * -1 + vector.y * 0)
+var last_segment: Area2D = self
 
 @export var next_segment : Area2D
 @export var tile_map: TileMap
@@ -53,22 +44,22 @@ func _ready():
 	position = grid_to_local(grid_location)
 	
 	# set up signals for existing segments:
-	var curr = self
-	while  curr.next_segment:
-		curr.next_segment.connect_move_signal(curr.moved)
-		curr = curr.next_segment
+	while last_segment.next_segment:
+		last_segment.next_segment.connect_move_signal(last_segment.moved)
+		last_segment = last_segment.next_segment
+		
 
 
 func _on_move_timer_timeout():
 	
-	if coins_eaten:
-		var old_last = last_segment()
+	if coins_eaten >= 1:
 		var new_last = SnakeSegment.instantiate()
 		add_sibling(new_last)
-		new_last.position = old_last.position
+		new_last.position = last_segment.position
 		# new_last.next_segment = null
-		new_last.connect_move_signal(old_last.moved)
-		old_last.next_segment = new_last
+		new_last.connect_move_signal(last_segment.moved)
+		last_segment.next_segment = new_last
+		last_segment = new_last
 		coins_eaten -= 1
 	
 	move()
@@ -88,11 +79,6 @@ func _process(_delta):
 func grid_to_local(coord: Vector2):
 	return coord.x * dir_x + coord.y * dir_y
 	
-	
-func _on_snack_timer_timeout():
-	pass
-	# coins_eaten += 1
-	
 func move():
 	var old_position = position
 	direction = new_direction
@@ -100,8 +86,16 @@ func move():
 	position = grid_to_local(grid_location)
 	moved.emit(old_position, position)
 	
-func last_segment():
-	var curr = self
-	while curr.next_segment:
-		curr = curr.next_segment
-	return curr
+
+# these two rotation functions rotate by PI/2
+func rotate_counter_clockwise(vector: Vector2):
+	return Vector2(
+		vector.x * 0 + vector.y * -1,
+		vector.x * 1 + vector.y * 0
+	)
+
+func rotate_clockwise(vector: Vector2):
+	return Vector2(
+		vector.x * 0 + vector.y * 1,
+		vector.x * -1 + vector.y * 0)
+
