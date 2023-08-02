@@ -40,7 +40,7 @@ sources/2 = SubResource("TileSetAtlasSource_rshcm")
 sources/6 = SubResource("TileSetAtlasSource_b8h0c")
 sources/0 = SubResource("TileSetAtlasSource_8f8oc")
 
-[node name="Tile_scene" type="Node2D"]
+[node name="TestScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
