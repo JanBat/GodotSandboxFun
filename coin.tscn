@@ -1,16 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqtaul20rn73m"]
+[gd_scene load_steps=7 format=3 uid="uid://cqtaul20rn73m"]
 
+[ext_resource type="Script" path="res://coin.gd" id="1_itvqv"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="1_owvx1"]
+[ext_resource type="Script" path="res://SimpleParticleEngine.gd" id="2_ov5a5"]
+[ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="3_u1wym"]
 
 [sub_resource type="Curve2D" id="Curve2D_na5s3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -6, 0, 0, 0, 0, -5, -8, 0, 0, 0, 0, -10, -13, 0, 0, 0, 0, -11, -20, 0, 0, 0, 0, -9, -25, 0, 0, 0, 0, -5, -28, 0, 0, 0, 0, 2, -30, 0, 0, 0, 0, 8, -28, 0, 0, 0, 0, 13, -22, 0, 0, 0, 0, 13, -16, 0, 0, 0, 0, 10, -11, 0, 0, 0, 0, 7, -7, 0, 0, 0, 0, 1, -6)
+}
+point_count = 13
 
-[node name="Coin" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxi0o"]
+radius = 8.40237
 
-[node name="BrownBlock" type="Sprite2D" parent="."]
+[node name="Coin" type="Area2D"]
+position = Vector2(367, 281)
+script = ExtResource("1_itvqv")
+metadata/_edit_group_ = true
+
+[node name="BrownReferenceBlock" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 8)
 texture = ExtResource("1_owvx1")
 
-[node name="Particles" type="Node2D" parent="BrownBlock"]
+[node name="SimpleParticleEngine" type="Node2D" parent="."]
+position = Vector2(0, 8)
+scale = Vector2(1, 1)
+script = ExtResource("2_ov5a5")
 
-[node name="Path2D" type="Path2D" parent="BrownBlock/Particles"]
+[node name="Path2D" type="Path2D" parent="SimpleParticleEngine"]
 curve = SubResource("Curve2D_na5s3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="SimpleParticleEngine/Path2D"]
+position = Vector2(2.08624, -5.63792)
+rotation = -2.81984
+h_offset = -1.145
+
+[node name="Sprite2D" type="Sprite2D" parent="SimpleParticleEngine/Path2D/PathFollow2D"]
+rotation = 2.81984
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_u1wym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oxi0o")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
