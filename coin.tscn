@@ -26,7 +26,6 @@ texture = ExtResource("1_owvx1")
 
 [node name="SimpleParticleEngine" type="Node2D" parent="."]
 position = Vector2(0, 8)
-scale = Vector2(1, 1)
 script = ExtResource("2_ov5a5")
 
 [node name="Path2D" type="Path2D" parent="SimpleParticleEngine"]
