@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="1_f1mm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0w76"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="Snake" type="Area2D"]
 script = ExtResource("1_arvse")
