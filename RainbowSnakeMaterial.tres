@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://heu476o8q85y"]
+
+[ext_resource type="Shader" path="res://snake.gdshader" id="1_3o2ta"]
+
+[resource]
+shader = ExtResource("1_3o2ta")
+shader_parameter/red_location = null
+shader_parameter/green_location = Vector2(500, 0)
+shader_parameter/blue_location = Vector2(0, 500)
