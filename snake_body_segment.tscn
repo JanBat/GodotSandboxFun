@@ -7,7 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15mlp"]
 size = Vector2(10.5, 11)
 
-[node name="SnakeBodySegment" type="Area2D"]
+[node name="SnakeBodySegment" type="Area2D" groups=["hazard"]]
+z_index = 1
 script = ExtResource("1_4644r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
