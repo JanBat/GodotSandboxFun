@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ltotq6qdpdiv"]
+[gd_scene load_steps=7 format=3 uid="uid://ltotq6qdpdiv"]
 
 [ext_resource type="Script" path="res://SnakeBodySegment.gd" id="1_4644r"]
-[ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="2_lrsa7"]
+[ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_a67gh"]
+[ext_resource type="Shader" path="res://snake.gdshader" id="2_dumu0"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_hjcr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15mlp"]
 size = Vector2(10.5, 11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcja8"]
+shader = ExtResource("2_dumu0")
 
 [node name="SnakeBodySegment" type="Area2D" groups=["hazard"]]
 z_index = 1
@@ -16,9 +20,10 @@ position = Vector2(0.25, -4.5)
 shape = SubResource("RectangleShape2D_15mlp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fcja8")
 position = Vector2(0.5, -4)
-scale = Vector2(0.185714, 0.2)
-texture = ExtResource("2_lrsa7")
+scale = Vector2(1, 1.075)
+texture = ExtResource("2_a67gh")
 
 [node name="ReferenceBlock" type="Sprite2D" parent="."]
 visible = false

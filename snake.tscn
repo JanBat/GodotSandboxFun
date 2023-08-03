@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsjhm1josomyh"]
+[gd_scene load_steps=8 format=3 uid="uid://dsjhm1josomyh"]
 
 [ext_resource type="Script" path="res://snake.gd" id="1_arvse"]
-[ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="1_f1mm8"]
+[ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_smign"]
+[ext_resource type="Shader" path="res://snake.gdshader" id="2_yibrc"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_save1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utu2p"]
+shader = ExtResource("2_yibrc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0w76"]
 size = Vector2(17, 9)
@@ -24,9 +28,9 @@ wait_time = 3.0
 autostart = true
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_utu2p")
 position = Vector2(0.5, -9.5)
-scale = Vector2(0.328571, 0.328571)
-texture = ExtResource("1_f1mm8")
+texture = ExtResource("2_smign")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -3.5)
