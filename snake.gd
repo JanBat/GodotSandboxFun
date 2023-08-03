@@ -26,6 +26,8 @@ var last_segment = self
 @export var tile_map: TileMap
 @export var grid_location: Vector2
 
+@export var snake_shader: ShaderMaterial
+
 
 func _ready():
 	var size
@@ -74,6 +76,14 @@ func _process(_delta):
 		new_direction = direction
 	if Input.is_action_just_pressed("steer_ahead"):
 		new_direction = direction
+		
+	var shader_pulse = sin($SnackTimer.time_left / $SnackTimer.wait_time * TAU)
+	snake_shader.set_shader_parameter("time_progress", shader_pulse)
+	snake_shader.set_shader_parameter("red_location", position)
+	snake_shader.set_shader_parameter("blue_location", last_segment.position)
+	var in_between = (last_segment.position - position) / 2 + position
+	snake_shader.set_shader_parameter("green_location", in_between)
+	
 	
 
 func grid_to_local(coord: Vector2):
@@ -108,15 +118,16 @@ func rotate_clockwise(vector: Vector2):
 var Coin = load("res://coin.tscn")
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("coin"):
-
-		coins_eaten += 1
-		area.get_gobbled_up()
-
 	if area.is_in_group("hazard"):
 		faint()
 		
-	print("collision!")
+		
+	elif area.is_in_group("coin"):
+
+		coins_eaten += 1
+		area.get_gobbled_up()
+	else:
+		print("unhandled collision!")
 	
 func faint():
 	$MoveTimer.stop()
