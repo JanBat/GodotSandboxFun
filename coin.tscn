@@ -12,7 +12,7 @@ _data = {
 point_count = 13
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxi0o"]
-radius = 8.40237
+radius = 6.08276
 
 [node name="Coin" type="Area2D"]
 position = Vector2(367, 281)
