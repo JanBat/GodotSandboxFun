@@ -1,4 +1,4 @@
-class_name Snake extends Area2D
+class_name Snake extends CharacterBody2D
 
 const SnakeSegment = preload("res://snake_body_segment.tscn")
 
@@ -20,7 +20,7 @@ const NE = Vector2(0, 1)
 
 
 
-var last_segment: Area2D = self
+var last_segment = self
 
 @export var next_segment : Area2D
 @export var tile_map: TileMap
@@ -84,8 +84,13 @@ func move():
 	direction = new_direction
 	grid_location = grid_location + direction
 	position = grid_to_local(grid_location)
-	moved.emit(old_position, position)
+	if move_and_collide(Vector2.ZERO):
+		# all collisions are fatal
+		faint()
+		queue_free()
+		return
 	
+	moved.emit(old_position, position)
 
 # these two rotation functions rotate by PI/2
 func rotate_counter_clockwise(vector: Vector2):
@@ -99,3 +104,28 @@ func rotate_clockwise(vector: Vector2):
 		vector.x * 0 + vector.y * 1,
 		vector.x * -1 + vector.y * 0)
 
+
+var Coin = load("res://coin.tscn")
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("coin"):
+
+		coins_eaten += 1
+		area.get_gobbled_up()
+
+	if area.is_in_group("hazard"):
+		faint()
+		
+	print("collision!")
+	
+func faint():
+	$MoveTimer.stop()
+	var curr = self
+	while curr:
+		var next = curr.next_segment
+		curr.queue_free()
+		curr = next
+	game_over()
+
+func game_over():
+	pass # Replace with function body.
