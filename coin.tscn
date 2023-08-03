@@ -12,9 +12,9 @@ _data = {
 point_count = 13
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxi0o"]
-radius = 8.40237
+radius = 7.0
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" groups=["coin"]]
 position = Vector2(367, 281)
 script = ExtResource("1_itvqv")
 metadata/_edit_group_ = true
@@ -43,5 +43,3 @@ texture = ExtResource("3_u1wym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oxi0o")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
