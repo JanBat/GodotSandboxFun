@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://spjcu6qk7jd5"]
+
+[ext_resource type="Script" path="res://TEMP FOLDER/control.gd" id="1_i5i3m"]
+[ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_mmc8n"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5i3m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 105.0
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="START" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="OPTIONS" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="QUIT" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="TITLE" type="Label" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 416.0
+text = "TITLE OF GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 744.0
+offset_bottom = 1128.0
+texture = ExtResource("2_mmc8n")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="VBoxContainer/START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
