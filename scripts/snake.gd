@@ -1,6 +1,6 @@
 class_name Snake extends CharacterBody2D
 
-const SnakeSegment = preload("res://snake_body_segment.tscn")
+const SnakeSegment = preload("res://scenes/snake_body_segment.tscn")
 
 signal moved(from: Vector2, to: Vector2)
 signal game_over_sig()
@@ -117,7 +117,7 @@ func rotate_clockwise(vector: Vector2):
 		vector.x * -1 + vector.y * 0)
 
 
-var Coin = load("res://coin.tscn")
+var Coin = load("res://scenes/coin.tscn")
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("hazard"):

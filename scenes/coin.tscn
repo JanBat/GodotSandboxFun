@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqtaul20rn73m"]
 
-[ext_resource type="Script" path="res://coin.gd" id="1_itvqv"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_itvqv"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="1_owvx1"]
-[ext_resource type="Script" path="res://SimpleParticleEngine.gd" id="2_ov5a5"]
+[ext_resource type="Script" path="res://scripts/SimpleParticleEngine.gd" id="2_ov5a5"]
 [ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="3_u1wym"]
 
 [sub_resource type="Curve2D" id="Curve2D_na5s3"]
