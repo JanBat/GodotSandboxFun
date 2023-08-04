@@ -10,7 +10,6 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_snake_game_over_sig():
 	# WE WOULD LIKE TO SHOW MESSAGE
 	queue_free()

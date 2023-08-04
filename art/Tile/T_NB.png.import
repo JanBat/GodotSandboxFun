@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mk8ygyfrrmp7"
-path="res://.godot/imported/Pink_wall_in.png-afa33e492bd4a38fa0a3f84b1755752c.ctex"
+uid="uid://bt4qa7snl6nar"
+path="res://.godot/imported/T_NB.png-0820774f765124cb855e70d3b6b36424.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Tile/Pink_wall_in.png"
-dest_files=["res://.godot/imported/Pink_wall_in.png-afa33e492bd4a38fa0a3f84b1755752c.ctex"]
+source_file="res://art/Tile/T_NB.png"
+dest_files=["res://.godot/imported/T_NB.png-0820774f765124cb855e70d3b6b36424.ctex"]
 
 [params]
 
