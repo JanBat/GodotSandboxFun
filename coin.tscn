@@ -14,7 +14,6 @@ point_count = 13
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxi0o"]
 radius = 7.0
 
-
 [node name="Coin" type="Area2D" groups=["coin"]]
 position = Vector2(367, 281)
 script = ExtResource("1_itvqv")
