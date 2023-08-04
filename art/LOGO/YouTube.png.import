@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mk8ygyfrrmp7"
-path="res://.godot/imported/Pink_wall_in.png-afa33e492bd4a38fa0a3f84b1755752c.ctex"
+uid="uid://dr6tirvnnuvqu"
+path="res://.godot/imported/YouTube.png-286562e74318d065f9837719bf31449f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Tile/Pink_wall_in.png"
-dest_files=["res://.godot/imported/Pink_wall_in.png-afa33e492bd4a38fa0a3f84b1755752c.ctex"]
+source_file="res://art/LOGO/YouTube.png"
+dest_files=["res://.godot/imported/YouTube.png-286562e74318d065f9837719bf31449f.ctex"]
 
 [params]
 
