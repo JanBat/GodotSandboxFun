@@ -3,6 +3,7 @@ class_name Snake extends CharacterBody2D
 const SnakeSegment = preload("res://snake_body_segment.tscn")
 
 signal moved(from: Vector2, to: Vector2)
+signal game_over_sig()
 
 var direction: Vector2 = Vector2.ZERO
 var new_direction: Vector2 = Vector2.ZERO
@@ -139,4 +140,5 @@ func faint():
 	game_over()
 
 func game_over():
-	pass # Replace with function body.
+	game_over_sig.emit()
+	

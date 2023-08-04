@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmr7tdowfbkt6"]
+[gd_scene load_steps=11 format=3 uid="uid://dmr7tdowfbkt6"]
 
 [ext_resource type="Texture2D" uid="uid://dnmv86hxm371m" path="res://art/Tile/B_Tree.png" id="1_0d431"]
+[ext_resource type="Script" path="res://level.gd" id="1_d7uvt"]
 [ext_resource type="Texture2D" uid="uid://cescbn2jhg3f5" path="res://art/Tile/green_two.png" id="2_lc2u0"]
 [ext_resource type="Texture2D" uid="uid://d1thlh812ip15" path="res://art/Tile/Tree_Two.png" id="3_thm04"]
 [ext_resource type="PackedScene" uid="uid://dsjhm1josomyh" path="res://snake.tscn" id="4_ia7tc"]
@@ -40,14 +41,14 @@ sources/2 = SubResource("TileSetAtlasSource_rshcm")
 sources/6 = SubResource("TileSetAtlasSource_b8h0c")
 sources/0 = SubResource("TileSetAtlasSource_8f8oc")
 
-[node name="TestScene" type="Node2D"]
+[node name="Level" type="Node2D"]
 top_level = true
+script = ExtResource("1_d7uvt")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 position = Vector2(300, 40)
 tile_set = SubResource("TileSet_jhh53")
-collision_visibility_mode = 1
 format = 2
 layer_0/name = "base"
 layer_0/y_sort_enabled = true
@@ -94,3 +95,7 @@ z_index = 1
 position = Vector2(-31, 51)
 tile_map = NodePath("..")
 grid_location = Vector2(0, 4)
+
+[connection signal="game_over_sig" from="TileMap/Snake" to="." method="_on_snake_game_over_sig"]
+
+[editable path="TileMap/Snake"]
