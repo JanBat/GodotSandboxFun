@@ -48,8 +48,8 @@ vertical_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 layout_mode = 0
-offset_right = 744.0
-offset_bottom = 1128.0
+offset_right = 728.0
+offset_bottom = 1088.0
 texture = ExtResource("2_mmc8n")
 stretch_mode = 1
 metadata/_edit_lock_ = true
