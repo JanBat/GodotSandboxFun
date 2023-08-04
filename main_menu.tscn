@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://spjcu6qk7jd5"]
 
-[ext_resource type="Script" path="res://TEMP FOLDER/control.gd" id="1_i5i3m"]
-[ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_mmc8n"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_6em6x"]
+[ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_5w6p3"]
 
 [node name="MENU" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ offset_top = -32.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i5i3m")
+script = ExtResource("1_6em6x")
 metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -53,7 +53,7 @@ z_index = -1
 layout_mode = 0
 offset_right = 744.0
 offset_bottom = 1128.0
-texture = ExtResource("2_mmc8n")
+texture = ExtResource("2_5w6p3")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 

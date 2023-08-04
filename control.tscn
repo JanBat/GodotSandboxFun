@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://spjcu6qk7jd5"]
+[gd_scene load_steps=3 format=3 uid="uid://b8q66oomp4a06"]
 
-[ext_resource type="Script" path="res://TEMP FOLDER/control.gd" id="1_i5i3m"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_08q8a"]
 [ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_mmc8n"]
 
 [node name="Control" type="Control"]
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i5i3m")
+script = ExtResource("1_08q8a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 top_level = true

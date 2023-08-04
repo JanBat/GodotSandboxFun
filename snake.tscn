@@ -1,12 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsjhm1josomyh"]
 
 [ext_resource type="Script" path="res://snake.gd" id="1_arvse"]
-[ext_resource type="Material" uid="uid://heu476o8q85y" path="res://RainbowSnakeMaterial.tres" id="2_aq5qv"]
+[ext_resource type="Material" uid="uid://cpcp4d51ehm3" path="res://RainbowSnakeMaterial.tres" id="2_aq5qv"]
 [ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_smign"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_save1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0w76"]
-
 size = Vector2(17, 9)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eeoup"]
