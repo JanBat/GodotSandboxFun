@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://dnmv86hxm371m" path="res://art/Tile/B_Tree.png" id="1_0d431"]
 [ext_resource type="Script" path="res://level.gd" id="1_d7uvt"]
 [ext_resource type="Texture2D" uid="uid://cescbn2jhg3f5" path="res://art/Tile/green_two.png" id="2_lc2u0"]
-[ext_resource type="Texture2D" uid="uid://rsq26k6ygsmt" path="res://art/Tile/B_S_R.png" id="3_4tssl"]
+[ext_resource type="Texture2D" path="res://art/Tile/B_S_R.png" id="3_4tssl"]
 [ext_resource type="Texture2D" uid="uid://d1thlh812ip15" path="res://art/Tile/Tree_Two.png" id="3_thm04"]
 [ext_resource type="PackedScene" uid="uid://dsjhm1josomyh" path="res://snake.tscn" id="4_ia7tc"]
 [ext_resource type="PackedScene" uid="uid://cqtaul20rn73m" path="res://coin.tscn" id="5_5731x"]
-[ext_resource type="Texture2D" uid="uid://bt4qa7snl6nar" path="res://art/Tile/T_NB.png" id="5_scdk1"]
+[ext_resource type="Texture2D" path="res://art/Tile/T_NB.png" id="5_scdk1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8f8oc"]
 texture = ExtResource("1_0d431")
@@ -64,6 +64,7 @@ sources/3 = SubResource("TileSetAtlasSource_ti7w0")
 
 [node name="Level" type="Node2D"]
 top_level = true
+position = Vector2(123, 438)
 script = ExtResource("1_d7uvt")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -124,5 +125,6 @@ tile_map = NodePath("..")
 grid_location = Vector2(0, 4)
 
 [connection signal="game_over_sig" from="TileMap/Snake" to="." method="_on_snake_game_over_sig"]
+[connection signal="moved" from="TileMap/Snake" to="." method="_on_snake_moved"]
 
 [editable path="TileMap/Snake"]

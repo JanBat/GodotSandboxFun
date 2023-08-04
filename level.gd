@@ -14,3 +14,7 @@ func _on_snake_game_over_sig():
 	# WE WOULD LIKE TO SHOW MESSAGE
 	queue_free()
 	game_over.emit()
+
+
+func _on_snake_moved(from, to):
+	position += from - to
