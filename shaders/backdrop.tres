@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ddj5iai8lx26b"]
+
+[ext_resource type="Shader" path="res://shaders/backdrop.gdshader" id="1_3v7jh"]
+
+[resource]
+shader = ExtResource("1_3v7jh")
+shader_parameter/red_location = null
+shader_parameter/green_location = null
+shader_parameter/blue_location = null
