@@ -124,6 +124,7 @@ position = Vector2(-31, 51)
 tile_map = NodePath("..")
 grid_location = Vector2(0, 4)
 
+[connection signal="camera_suggestion" from="TileMap/Snake" to="." method="_on_snake_camera_suggestion"]
 [connection signal="game_over_sig" from="TileMap/Snake" to="." method="_on_snake_game_over_sig"]
 [connection signal="moved" from="TileMap/Snake" to="." method="_on_snake_moved"]
 

@@ -3,12 +3,13 @@ class_name Snake extends CharacterBody2D
 const SnakeSegment = preload("res://scenes/snake_body_segment.tscn")
 
 signal moved(from: Vector2, to: Vector2)
+signal camera_suggestion(pos: Vector2)
 signal game_over_sig()
 
 var direction: Vector2 = Vector2.ZERO
 var new_direction: Vector2 = Vector2.ZERO
 
-var coins_eaten = 0
+var coins_eaten = 1
 
 # grid_to_local (?)
 var dir_x: Vector2
@@ -22,6 +23,11 @@ const NE = Vector2(0, 1)
 
 
 var last_segment = self
+var snake_length = 1
+@export
+var subsegments_per_segment = 4
+
+var time_to_move = false
 
 @export var next_segment : Area2D
 @export var tile_map: TileMap
@@ -29,6 +35,7 @@ var last_segment = self
 
 @export var snake_shader: ShaderMaterial
 
+var custom_animation_progress: float = 0.0
 
 func _ready():
 	var size
@@ -50,25 +57,15 @@ func _ready():
 	while last_segment.next_segment:
 		last_segment.next_segment.connect_move_signal(last_segment.moved)
 		last_segment = last_segment.next_segment
-		
+
+	# update_path()
 
 
 func _on_move_timer_timeout():
-	
-	if coins_eaten >= 1:
-		var new_last = SnakeSegment.instantiate()
-		add_sibling(new_last)
-		new_last.position = last_segment.position
-		# new_last.next_segment = null
-		new_last.connect_move_signal(last_segment.moved)
-		last_segment.next_segment = new_last
-		last_segment = new_last
-		coins_eaten -= 1
-	
-	move()
+	time_to_move = true
 	
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("steer_right"):
 		new_direction = rotate_clockwise(direction)
 	if Input.is_action_just_pressed("steer_left"):
@@ -86,6 +83,27 @@ func _process(_delta):
 	snake_shader.set_shader_parameter("green_location", in_between)
 	
 	
+	custom_animation_progress += delta #/ $MoveTimer.wait_time
+	
+	if time_to_move:
+		if coins_eaten >= 1:
+			var new_last = SnakeSegment.instantiate()
+			add_sibling(new_last)
+			new_last.position = last_segment.position
+			# new_last.next_segment = null
+			new_last.connect_move_signal(last_segment.moved)
+			last_segment.next_segment = new_last
+			last_segment = new_last
+			snake_length += 1
+			coins_eaten -= 1
+			add_segment()
+		
+		move()
+		custom_animation_progress = 0.0
+		time_to_move = false
+	
+	update_path()
+	process_path()
 
 func grid_to_local(coord: Vector2):
 	return coord.x * dir_x + coord.y * dir_y
@@ -142,4 +160,44 @@ func faint():
 
 func game_over():
 	game_over_sig.emit()
+
+
+func process_path():
+	var sub_segments = $SubSegmentPath.get_children()
+	for segment_index in sub_segments.size():
+		var segment = sub_segments[segment_index]
+		
+		segment.progress_ratio = 1 - (float(segment_index) / (float(len(sub_segments) + subsegments_per_segment)) \
+							+ custom_animation_progress / (float(len(sub_segments))/subsegments_per_segment))
+		"""
+		at all times ->
+		
+		
+		"""
+							
+		# so the pathfollow still rotates but its graphic appears upright
+		segment.get_node("SubSegmentGraphic").rotation = - segment.rotation
+		# segment.rotation = 0
 	
+	if sub_segments:
+		camera_suggestion.emit(position + sub_segments[len(sub_segments)-1].position)
+	else:  # at the beginning when no segments are present
+		camera_suggestion.emit(position)
+		
+		
+func add_segment():
+	var path: Path2D = $SubSegmentPath
+	for i in range(subsegments_per_segment):
+		var segment = $SubSegmentFollow.duplicate()
+		segment.show()
+		path.add_child(segment)
+
+func update_path():
+	var path: Path2D = $SubSegmentPath
+	var curve: Curve2D = path.get_curve()
+	curve.clear_points()
+	curve.add_point(grid_to_local(new_direction))
+	var curr = self
+	while curr:
+		curve.add_point(curr.position - self.position)
+		curr = curr.next_segment
