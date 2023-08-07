@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsjhm1josomyh"]
+[gd_scene load_steps=9 format=3 uid="uid://dsjhm1josomyh"]
 
 [ext_resource type="Script" path="res://scripts/snake.gd" id="1_arvse"]
 [ext_resource type="Material" uid="uid://cpcp4d51ehm3" path="res://shaders/RainbowSnakeMaterial.tres" id="2_aq5qv"]
 [ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_smign"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_save1"]
+[ext_resource type="Texture2D" uid="uid://jqynguyia8pp" path="res://art/Tile/SNAKE_BODY_small.png" id="5_fvp53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0w76"]
 size = Vector2(17, 9)
@@ -11,6 +12,8 @@ size = Vector2(17, 9)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eeoup"]
 radius = 5.0
 height = 22.0
+
+[sub_resource type="Curve2D" id="Curve2D_g71r3"]
 
 [node name="Snake" type="CharacterBody2D"]
 z_index = 1
@@ -26,8 +29,9 @@ wait_time = 3.0
 autostart = true
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
+visible = false
 material = ExtResource("2_aq5qv")
-position = Vector2(0.5, -9.5)
+position = Vector2(0.5, -4)
 texture = ExtResource("2_smign")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -44,6 +48,17 @@ texture = ExtResource("3_save1")
 position = Vector2(0, -3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_eeoup")
+
+[node name="SubSegmentPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_g71r3")
+
+[node name="SubSegmentFollow" type="PathFollow2D" parent="."]
+visible = false
+rotation = -6.28319
+
+[node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentFollow"]
+z_index = 2
+texture = ExtResource("5_fvp53")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
