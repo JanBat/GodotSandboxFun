@@ -58,6 +58,7 @@ func _ready():
 		last_segment.next_segment.connect_move_signal(last_segment.moved)
 		last_segment = last_segment.next_segment
 
+	add_segment()
 	# update_path()
 
 
@@ -196,7 +197,8 @@ func update_path():
 	var path: Path2D = $SubSegmentPath
 	var curve: Curve2D = path.get_curve()
 	curve.clear_points()
-	curve.add_point(grid_to_local(new_direction))
+	if snake_length > 1:
+		curve.add_point(grid_to_local(new_direction))
 	var curr = self
 	while curr:
 		curve.add_point(curr.position - self.position)
