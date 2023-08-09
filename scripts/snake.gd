@@ -24,8 +24,19 @@ const NE = Vector2(0, 1)
 
 var last_segment = self
 var snake_length = 1
+
+# how many shaded segments for logical segment
 @export
 var subsegments_per_segment = 4
+
+
+# how far do the dots stray from the center of segments
+@export
+var polkadots_within_radius = 15.0
+
+# how many dots per shaded segment
+@export
+var dots_per_segment = 1
 
 var time_to_move = false
 
@@ -75,14 +86,6 @@ func _process(delta):
 		new_direction = direction
 	if Input.is_action_just_pressed("steer_ahead"):
 		new_direction = direction
-		
-	var shader_pulse = sin($SnackTimer.time_left / $SnackTimer.wait_time * TAU)
-	snake_shader.set_shader_parameter("time_progress", shader_pulse)
-	snake_shader.set_shader_parameter("red_location", position)
-	snake_shader.set_shader_parameter("blue_location", last_segment.position)
-	var in_between = (last_segment.position - position) / 2 + position
-	snake_shader.set_shader_parameter("green_location", in_between)
-	
 	
 	custom_animation_progress += delta #/ $MoveTimer.wait_time
 	
@@ -170,11 +173,7 @@ func process_path():
 		
 		segment.progress_ratio = 1 - (float(segment_index) / (float(len(sub_segments) + subsegments_per_segment)) \
 							+ custom_animation_progress / (float(len(sub_segments))/subsegments_per_segment))
-		"""
-		at all times ->
 		
-		
-		"""
 							
 		# so the pathfollow still rotates but its graphic appears upright
 		segment.get_node("SubSegmentGraphic").rotation = - segment.rotation
@@ -185,6 +184,16 @@ func process_path():
 	else:  # at the beginning when no segments are present
 		camera_suggestion.emit(position)
 		
+	# alert shader to polakadot positions
+	var dots = []
+	for follow in $SubSegmentPath.get_children():
+		var screen_coord = get_viewport().get_screen_transform() * follow.get_global_transform_with_canvas()
+		# dots.append(screen_coord.origin)
+		for d in follow.polkadots:
+			dots.append(screen_coord.origin + d)
+	snake_shader.set_shader_parameter("dots", dots)
+	
+	
 		
 func add_segment():
 	var path: Path2D = $SubSegmentPath
@@ -192,6 +201,16 @@ func add_segment():
 		var segment = $SubSegmentFollow.duplicate()
 		segment.show()
 		path.add_child(segment)
+		
+		# give segment 3 random polkadots:
+		
+		var polkadots = []
+		for j in range(dots_per_segment):
+			var dot = Vector2(
+				randf_range(-polkadots_within_radius, polkadots_within_radius), 
+				randf_range(-polkadots_within_radius, polkadots_within_radius))
+			polkadots.append(dot)
+		segment.polkadots = polkadots
 
 func update_path():
 	var path: Path2D = $SubSegmentPath

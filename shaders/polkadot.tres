@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://df7l3urgqgncd"]
+
+[ext_resource type="Shader" path="res://shaders/polkadot_rainbow.gdshader" id="1_b0bhg"]
+
+[resource]
+shader = ExtResource("1_b0bhg")
