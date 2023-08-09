@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cescbn2jhg3f5" path="res://art/Tile/green_two.png" id="1_ubqch"]
 [ext_resource type="Texture2D" uid="uid://dnmv86hxm371m" path="res://art/Tile/B_Tree.png" id="1_unpsp"]
-[ext_resource type="PackedScene" uid="uid://dsjhm1josomyh" path="res://snake.tscn" id="4_8hbh0"]
+[ext_resource type="PackedScene" uid="uid://dsjhm1josomyh" path="res://scenes/snake.tscn" id="4_8hbh0"]
 [ext_resource type="Texture2D" uid="uid://d1thlh812ip15" path="res://art/Tile/Tree_Two.png" id="7_7p5a3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8f8oc"]
