@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2go6tbyttb3m"
-path="res://.godot/imported/ROCK_NB.png-429677e2f894058b4b9afca28debf715.ctex"
+uid="uid://jqynguyia8pp"
+path="res://.godot/imported/SNAKE_BODY_small.png-e07f95ba887a2f381db6bea1ab5860b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Tile/ROCK_NB.png"
-dest_files=["res://.godot/imported/ROCK_NB.png-429677e2f894058b4b9afca28debf715.ctex"]
+source_file="res://art/Tile/SNAKE_BODY_small.png"
+dest_files=["res://.godot/imported/SNAKE_BODY_small.png-e07f95ba887a2f381db6bea1ab5860b7.ctex"]
 
 [params]
 

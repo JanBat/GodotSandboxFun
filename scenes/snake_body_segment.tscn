@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ltotq6qdpdiv"]
 
-[ext_resource type="Script" path="res://scripts/SnakeBodySegment.gd" id="1_4644r"]
+[ext_resource type="Script" path="res://scripts/snake_segment.gd" id="1_126kl"]
 [ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_a67gh"]
-[ext_resource type="Material" uid="uid://cpcp4d51ehm3" path="res://shaders/RainbowSnakeMaterial.tres" id="2_hgd24"]
+[ext_resource type="Material" uid="uid://df7l3urgqgncd" path="res://shaders/polkadot.tres" id="2_iq5b5"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_hjcr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15mlp"]
@@ -10,16 +10,16 @@ size = Vector2(10.5, 11)
 
 [node name="SnakeBodySegment" type="Area2D" groups=["hazard"]]
 z_index = 1
-script = ExtResource("1_4644r")
+script = ExtResource("1_126kl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -4.5)
 shape = SubResource("RectangleShape2D_15mlp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_hgd24")
+visible = false
+material = ExtResource("2_iq5b5")
 position = Vector2(0.5, -4)
-scale = Vector2(1, 1.075)
 texture = ExtResource("2_a67gh")
 
 [node name="ReferenceBlock" type="Sprite2D" parent="."]
