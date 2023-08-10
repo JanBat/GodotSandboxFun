@@ -11,14 +11,11 @@ var new_direction: Vector2 = Vector2.ZERO
 
 var coins_eaten = 1
 
-# grid_to_local (?)
-var dir_x: Vector2
-var dir_y: Vector2
-
 const SE = Vector2(1,0)
-const SW  = Vector2(0,-1)
-const NW = Vector2(-1,0)
-const NE = Vector2(0, 1)
+# not actually correct
+#const SW  = Vector2(0,1)
+#const NW = Vector2(-1,0)
+#const NE = Vector2(0,-1)
 
 
 
@@ -49,20 +46,11 @@ var time_to_move = false
 var custom_animation_progress: float = 0.0
 
 func _ready():
-	var size
-	if tile_map:
-		size = tile_map.tile_set.tile_size
-	else:
-		size = Vector2(30,30)
-		
-	dir_x = size / 2.0
-	dir_y = Vector2(size.x / 2.0, size.y / -2.0)
 	
 	# initialize segments
-	
 	direction = SE
 	new_direction = SE
-	position = grid_to_local(grid_location)
+	position = tile_map.map_to_local(grid_location)
 	
 	# set up signals for existing segments:
 	while last_segment.next_segment:
@@ -94,7 +82,6 @@ func _process(delta):
 			var new_last = SnakeSegment.instantiate()
 			add_sibling(new_last)
 			new_last.position = last_segment.position
-			# new_last.next_segment = null
 			new_last.connect_move_signal(last_segment.moved)
 			last_segment.next_segment = new_last
 			last_segment = new_last
@@ -109,14 +96,11 @@ func _process(delta):
 	update_path()
 	process_path()
 
-func grid_to_local(coord: Vector2):
-	return coord.x * dir_x + coord.y * dir_y
-	
 func move():
 	var old_position = position
 	direction = new_direction
 	grid_location = grid_location + direction
-	position = grid_to_local(grid_location)
+	position = tile_map.map_to_local(grid_location)
 	#if not tile_map.get_cell_tile_data(0, grid_location):
 		# faint()
 	#	pass
@@ -130,13 +114,13 @@ func move():
 	moved.emit(old_position, position)
 
 # these two rotation functions rotate by PI/2
-func rotate_counter_clockwise(vector: Vector2):
+func rotate_clockwise(vector: Vector2):
 	return Vector2(
 		vector.x * 0 + vector.y * -1,
 		vector.x * 1 + vector.y * 0
 	)
 
-func rotate_clockwise(vector: Vector2):
+func rotate_counter_clockwise(vector: Vector2):
 	return Vector2(
 		vector.x * 0 + vector.y * 1,
 		vector.x * -1 + vector.y * 0)
@@ -220,7 +204,7 @@ func update_path():
 	var curve: Curve2D = path.get_curve()
 	curve.clear_points()
 	if snake_length > 1:
-		curve.add_point(grid_to_local(new_direction))
+		curve.add_point(tile_map.map_to_local(grid_location + new_direction))
 	var curr = self
 	while curr:
 		curve.add_point(curr.position - self.position)

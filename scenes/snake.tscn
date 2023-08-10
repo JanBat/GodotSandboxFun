@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/snake.gd" id="1_arvse"]
 [ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_smign"]
-[ext_resource type="Material" path="res://shaders/polkadot.tres" id="3_kfaw8"]
+[ext_resource type="Material" uid="uid://df7l3urgqgncd" path="res://shaders/polkadot.tres" id="3_kfaw8"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_save1"]
 [ext_resource type="Script" path="res://scripts/SubSegmentFollow.gd" id="5_78svb"]
 [ext_resource type="Texture2D" uid="uid://jqynguyia8pp" path="res://art/Tile/SNAKE_BODY_small.png" id="5_fvp53"]
@@ -30,7 +30,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
-visible = false
+z_index = 1
 material = ExtResource("3_kfaw8")
 position = Vector2(0.5, -4)
 texture = ExtResource("2_smign")
@@ -54,8 +54,6 @@ shape = SubResource("CapsuleShape2D_eeoup")
 curve = SubResource("Curve2D_g71r3")
 
 [node name="SubSegmentFollow" type="PathFollow2D" parent="."]
-visible = false
-rotation = -6.28319
 script = ExtResource("5_78svb")
 
 [node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentFollow"]
