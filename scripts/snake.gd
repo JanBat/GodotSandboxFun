@@ -87,6 +87,7 @@ func _process(delta):
 			last_segment = new_last
 			snake_length += 1
 			coins_eaten -= 1
+			$MoveTimer.wait_time *= 0.98
 			add_segment()
 		
 		move()

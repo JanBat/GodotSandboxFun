@@ -17,7 +17,6 @@ height = 22.0
 [sub_resource type="Curve2D" id="Curve2D_g71r3"]
 
 [node name="Snake" type="CharacterBody2D"]
-z_index = 1
 script = ExtResource("1_arvse")
 snake_shader = ExtResource("3_kfaw8")
 
@@ -58,7 +57,6 @@ curve = SubResource("Curve2D_g71r3")
 script = ExtResource("5_78svb")
 
 [node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentFollow"]
-z_index = 2
 z_as_relative = false
 y_sort_enabled = true
 material = ExtResource("3_kfaw8")
