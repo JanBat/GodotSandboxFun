@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ci44kyr41ubf3"]
 
-[ext_resource type="Material" uid="uid://5b5fxxvq4af1" path="res://shaders/backdrop.tres" id="1_11msr"]
+[ext_resource type="Material" uid="uid://ddj5iai8lx26b" path="res://shaders/backdrop.tres" id="1_11msr"]
+[ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="2_5lews"]
 [ext_resource type="Script" path="res://scripts/ShaderPhysicsCarousel.gd" id="2_oplaa"]
-[ext_resource type="Texture2D" uid="uid://bfkveflcexy2e" path="res://art/boxExplosive.png" id="4_2kqwc"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="4_l5yub"]
 
 [sub_resource type="Curve2D" id="Curve2D_j2tcs"]
@@ -23,10 +23,16 @@ _data = {
 }
 point_count = 8
 
-[node name="Backdrop" type="Node2D"]
-z_index = -4
+[node name="Backdrop" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
 material = ExtResource("1_11msr")
-position = Vector2(26, 46)
+position = Vector2(360.5, 555.5)
+scale = Vector2(11.3, 16.8714)
+texture = ExtResource("2_5lews")
 
 [node name="ShaderPhysicsCarousel" type="Node2D" parent="."]
 position = Vector2(-7, -9)
@@ -58,9 +64,3 @@ curve = SubResource("Curve2D_sqt31")
 [node name="PathFollow2D" type="PathFollow2D" parent="ShaderPhysicsCarousel/GreenPath"]
 position = Vector2(116, 533)
 rotation = 0.104658
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("1_11msr")
-position = Vector2(513.361, 484)
-scale = Vector2(16.8185, 17.6734)
-texture = ExtResource("4_2kqwc")
