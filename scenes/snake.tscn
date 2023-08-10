@@ -30,6 +30,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 material = ExtResource("3_kfaw8")
 position = Vector2(0.5, -4)

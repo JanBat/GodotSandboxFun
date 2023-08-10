@@ -6,6 +6,7 @@ var debug = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# fix_invalid_tiles()
 	if debug:
 		for layer in range(5):
 			for cell in get_used_cells(layer):

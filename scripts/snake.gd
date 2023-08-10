@@ -101,7 +101,10 @@ func move():
 	direction = new_direction
 	grid_location = grid_location + direction
 	position = tile_map.map_to_local(grid_location)
-	if not tile_map.get_cell_tile_data(0, grid_location):
+	for layer in range(10):
+		var t = tile_map.get_cell_tile_data(layer, grid_location)
+		if t:
+			break
 		faint()
 		
 	var coll = move_and_collide(Vector2.ZERO)
@@ -186,7 +189,7 @@ func add_segment():
 	var path: Path2D = $SubSegmentPath
 	for i in range(subsegments_per_segment):
 		var segment = $SubSegmentFollow.duplicate()
-		segment.show()
+		# segment.show()
 		path.add_child(segment)
 		
 		# give segment 3 random polkadots:
