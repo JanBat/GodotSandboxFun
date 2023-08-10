@@ -13,7 +13,7 @@ var debug_grid: bool:
 				else:
 					label.hide()
 
-signal game_over()
+signal game_over(score)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	init_debug_grid()
@@ -24,10 +24,10 @@ var desired_position: Vector2 = position
 func _process(delta):
 	position += (desired_position - position) * delta * 0.5
 
-func _on_snake_game_over_sig():
+func _on_snake_game_over_sig(score):
 	# WE WOULD LIKE TO SHOW MESSAGE
 	queue_free()
-	game_over.emit()
+	game_over.emit(score)
 
 
 func _on_snake_moved(from, to):

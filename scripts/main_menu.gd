@@ -1,10 +1,20 @@
 extends Control
+# -----------------------------------------------------
+# Main menu: This houses the title menu. 
+#  Start button, options buttion (Work in progress), quit.
+#  A score board that saves high score on players device and 
+#  loads high score when new game is opened. 
+#
+# -----------------------------------------------------
+# VARIABLES: 
+@onready var current_label = $VBoxContainer2/CURRENTSCORELABEL
+@onready var highscore_label = $VBoxContainer2/HIGHSCORELABEL
+# change with variable that gets length of snake
+var current_score = 0
 
+# -----------------------------------------------------
 func _ready():
 	pass # Replace with function body.
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 #--------------------------------------------------------
 #  BUTTON FUCTIONS ON MAIN MENU
 func _on_start_pressed():
@@ -13,10 +23,30 @@ func _on_start_pressed():
 	print("START GAME")
 	get_tree().root.add_child(start_scene)
 	hide()
+	
+func _on_options_pressed():
+	# NO FUNCTION YET
+	pass 
 
 func _on_quit_pressed():
 	get_tree().quit()
 	print("END GAME")
-#--------------------------------------------------------
-func on_game_over():
+#---------------------------------------
+# SCORE FUNCTIONS: 
+#  When back to the main menu this are available to be exicutied 
+func print_current_score(score):
+	current_label.text = "YOUR SCORE: " + str(score)
+	
+func print_high_score(score):
+	if score >= FileSaveLoad.highest_record:
+		#print("check HR " + str(SaveLoad.highest_record))
+		FileSaveLoad.highest_record = score
+		highscore_label.text = "High Score: " + str(FileSaveLoad.highest_record)
+	FileSaveLoad.save_score()
+
+#---------------------------------------
+func on_game_over(score):
+	print_current_score(score)
+	print_high_score(score)
 	show()
+

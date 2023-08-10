@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://spjcu6qk7jd5"]
+[gd_scene load_steps=11 format=3 uid="uid://spjcu6qk7jd5"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6em6x"]
 [ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_5w6p3"]
 [ext_resource type="FontFile" uid="uid://r2g20ousx1x4" path="res://art/FONT/Hypeblox-L3YGZ.ttf" id="2_jolsj"]
 [ext_resource type="Shader" path="res://scenes/Title.gdshader" id="3_mc0n7"]
+[ext_resource type="Texture2D" uid="uid://b3gqe5s64dt2f" path="res://art/LOGO/linkedin_logo.png" id="5_am066"]
+[ext_resource type="Script" path="res://scenes/HIGHSCORELABEL.gd" id="5_yn5mu"]
+[ext_resource type="Texture2D" uid="uid://dr6tirvnnuvqu" path="res://art/LOGO/YouTube.png" id="6_2qrgh"]
+[ext_resource type="Texture2D" uid="uid://b0jskn4j6tbuc" path="res://art/LOGO/instagram.png" id="7_ql5oj"]
+[ext_resource type="Texture2D" uid="uid://dxtmdn0kbht20" path="res://art/LOGO/godot.png" id="8_n4ieo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nv43"]
 shader = ExtResource("3_mc0n7")
@@ -78,5 +83,94 @@ texture = ExtResource("2_5w6p3")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -609.0
+offset_right = -57.0
+offset_bottom = -290.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SCOREBOARDLABEL" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 40
+text = "SCORE BOARD"
+horizontal_alignment = 1
+
+[node name="HIGHSCORELABEL" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 40
+text = "HIGH SCORE: 9999"
+vertical_alignment = 1
+script = ExtResource("5_yn5mu")
+
+[node name="CURRENTSCORELABEL" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 40
+text = "YOUR SCORE: 0"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -48.0
+offset_right = 1228.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+alignment = 1
+
+[node name="LINKEDIN" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("5_am066")
+
+[node name="YOUTUBE" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_2qrgh")
+
+[node name="INSTAGRAM" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("7_ql5oj")
+
+[node name="GODOT" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("8_n4ieo")
+
+[node name="GAME MESSAGE" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -313.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 60
+text = "Winner or loser
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/OPTIONS" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
