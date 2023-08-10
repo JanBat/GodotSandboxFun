@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2go6tbyttb3m"
-path="res://.godot/imported/ROCK_NB.png-429677e2f894058b4b9afca28debf715.ctex"
+uid="uid://covoig23hjnxk"
+path="res://.godot/imported/FRAME.png-a9529208aa3f4703cf5c653aacded868.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Tile/ROCK_NB.png"
-dest_files=["res://.godot/imported/ROCK_NB.png-429677e2f894058b4b9afca28debf715.ctex"]
+source_file="res://art/Tile/FRAME.png"
+dest_files=["res://.godot/imported/FRAME.png-a9529208aa3f4703cf5c653aacded868.ctex"]
 
 [params]
 
