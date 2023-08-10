@@ -101,9 +101,9 @@ func move():
 	direction = new_direction
 	grid_location = grid_location + direction
 	position = tile_map.map_to_local(grid_location)
-	#if not tile_map.get_cell_tile_data(0, grid_location):
-		# faint()
-	#	pass
+	if not tile_map.get_cell_tile_data(0, grid_location):
+		faint()
+		
 	var coll = move_and_collide(Vector2.ZERO)
 	if coll:
 		# all collisions are fatal
@@ -204,7 +204,7 @@ func update_path():
 	var curve: Curve2D = path.get_curve()
 	curve.clear_points()
 	if snake_length > 1:
-		curve.add_point(tile_map.map_to_local(grid_location + new_direction))
+		curve.add_point(tile_map.map_to_local(grid_location + new_direction) - self.position)
 	var curr = self
 	while curr:
 		curve.add_point(curr.position - self.position)
