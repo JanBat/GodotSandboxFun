@@ -30,7 +30,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
-visible = false
+z_index = 1
 material = ExtResource("3_kfaw8")
 position = Vector2(0.5, -4)
 texture = ExtResource("2_smign")
@@ -54,8 +54,6 @@ shape = SubResource("CapsuleShape2D_eeoup")
 curve = SubResource("Curve2D_g71r3")
 
 [node name="SubSegmentFollow" type="PathFollow2D" parent="."]
-visible = false
-rotation = -6.28319
 script = ExtResource("5_78svb")
 
 [node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentFollow"]

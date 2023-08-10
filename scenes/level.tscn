@@ -68,7 +68,6 @@ font_size = 10
 
 [node name="Level" type="Node2D"]
 top_level = true
-position = Vector2(85, 325)
 script = ExtResource("1_twwiv")
 
 [node name="TileMap" type="TileMap" parent="."]

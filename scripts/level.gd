@@ -22,7 +22,8 @@ func _ready():
 var desired_position: Vector2 = position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += (desired_position - position) * delta * 0.5
+	# position += (desired_position - position) * delta * 0.5
+	pass
 
 func _on_snake_game_over_sig(score):
 	# WE WOULD LIKE TO SHOW MESSAGE
