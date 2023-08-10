@@ -69,7 +69,6 @@ font_size = 10
 [node name="Level" type="Node2D"]
 top_level = true
 script = ExtResource("1_twwiv")
-debug_grid = true
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

@@ -4,7 +4,7 @@ const SnakeSegment = preload("res://scenes/snake_body_segment.tscn")
 
 signal moved(from: Vector2, to: Vector2)
 signal camera_suggestion(pos: Vector2)
-signal game_over_sig()
+signal game_over_sig(score)
 
 var direction: Vector2 = Vector2.ZERO
 var new_direction: Vector2 = Vector2.ZERO
@@ -150,7 +150,7 @@ func faint():
 	game_over()
 
 func game_over():
-	game_over_sig.emit()
+	game_over_sig.emit(snake_length)
 
 
 func process_path():
