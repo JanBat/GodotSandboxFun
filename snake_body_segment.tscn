@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dove1g5cd5og5"]
+
+[ext_resource type="Script" path="res://SnakeBodySegment.gd" id="1_4644r"]
+[ext_resource type="Texture2D" uid="uid://g4s1jtjn26yr" path="res://art/Tile/purple.png" id="2_a67gh"]
+[ext_resource type="Material" path="res://RainbowSnakeMaterial.tres" id="2_hgd24"]
+[ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="3_hjcr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15mlp"]
+size = Vector2(10.5, 11)
+
+[node name="SnakeBodySegment" type="Area2D" groups=["hazard"]]
+script = ExtResource("1_4644r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -4.5)
+shape = SubResource("RectangleShape2D_15mlp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+material = ExtResource("2_hgd24")
+position = Vector2(0.5, -4)
+scale = Vector2(1, 1.075)
+texture = ExtResource("2_a67gh")
+
+[node name="ReferenceBlock" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_hjcr8")
