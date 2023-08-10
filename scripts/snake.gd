@@ -117,6 +117,9 @@ func move():
 	direction = new_direction
 	grid_location = grid_location + direction
 	position = grid_to_local(grid_location)
+	#if not tile_map.get_cell_tile_data(0, grid_location):
+		# faint()
+	#	pass
 	var coll = move_and_collide(Vector2.ZERO)
 	if coll:
 		# all collisions are fatal

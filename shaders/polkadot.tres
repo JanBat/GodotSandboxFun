@@ -4,3 +4,4 @@
 
 [resource]
 shader = ExtResource("1_b0bhg")
+shader_parameter/dots = null
