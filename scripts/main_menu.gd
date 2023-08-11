@@ -8,6 +8,7 @@ extends Control
 # VARIABLES: 
 @onready var current_label = $SCOREBOARD/CURRENTSCORELABEL
 @onready var highscore_label = $SCOREBOARD/HIGHSCORELABEL
+@onready var banner_message = $"ParallaxBackground2/ParallaxLayer/MESSAGEBANNER/GAME MESSAGE"
 
 # change with variable that gets length of snake
 var current_score = 0
@@ -33,7 +34,7 @@ func _on_start_pressed():
 	
 func _on_options_pressed():
 	# NO FUNCTION YET
-	pass 
+	pass
 
 func _on_quit_pressed():
 	get_tree().quit()
@@ -52,11 +53,10 @@ func print_high_score(score):
 	FileSaveLoad.save_score()
 #---------------------------------------
 # GAME MESSAGE:
+	
+	
 func menu_banner(score):
+	show()
 	print("menu")
-	var banner_message = $"ParallaxBackground2/ParallaxLayer/MESSAGEBANNER/GAME MESSAGE"
-	if score >= FileSaveLoad.highest_record: 
-		banner_message = " WINNER "
-	else:
-		banner_message = " LOSER "
-
+	var banner_message = $ParallaxBackground2/ParallaxLayer/MESSAGEBANNER/GAMEMESSAGE
+	banner_message = " WINNER"
