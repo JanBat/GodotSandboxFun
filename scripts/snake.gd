@@ -5,11 +5,12 @@ const SnakeSegment = preload("res://scenes/snake_body_segment.tscn")
 signal moved(from: Vector2, to: Vector2)
 signal camera_suggestion(pos: Vector2)
 signal game_over_sig(score)
+signal speed_changed(new_factor)
 
 var direction: Vector2 = Vector2.ZERO
 var new_direction: Vector2 = Vector2.ZERO
 
-var coins_eaten = 1
+var coins_eaten = 1  # snake with length 1 looks a bit glitchy, so let's have it start out at length 2
 
 const SE = Vector2(1,0)
 # not actually correct
@@ -17,7 +18,18 @@ const SE = Vector2(1,0)
 #const NW = Vector2(-1,0)
 #const NE = Vector2(0,-1)
 
+var base_speed = 60.0 / 150.0 * 2 # step on every other beat (150bpm base)
 
+# grace period before starting to increase difficulty (speed)
+var min_snake_length_for_difficulty_increase = 4
+
+var speed = 1.0:
+	get:
+		return speed
+	set(value):
+		speed = value
+		$MoveTimer.wait_time = value * base_speed
+		speed_changed.emit(value)
 
 var last_segment = self
 var snake_length = 1
@@ -58,7 +70,6 @@ func _ready():
 		last_segment = last_segment.next_segment
 
 	add_segment()
-	# update_path()
 
 
 func _on_move_timer_timeout():
@@ -87,11 +98,13 @@ func _process(delta):
 			last_segment = new_last
 			snake_length += 1
 			coins_eaten -= 1
-			$MoveTimer.wait_time *= 0.98
+			# $MoveTimer.wait_time *= 0.98
 			add_segment()
+			if snake_length >= min_snake_length_for_difficulty_increase:
+				speed *= 0.99 # doesn't work quite yet
 		
 		move()
-		custom_animation_progress = 0.0
+		# custom_animation_progress = 0.0
 		time_to_move = false
 	
 	update_path()
@@ -102,7 +115,7 @@ func move():
 	direction = new_direction
 	grid_location = grid_location + direction
 	position = tile_map.map_to_local(grid_location)
-	for layer in range(10):
+	for layer in range(1):
 		var t = tile_map.get_cell_tile_data(layer, grid_location)
 		if t:
 			break
@@ -116,6 +129,10 @@ func move():
 		return
 	
 	moved.emit(old_position, position)
+	
+	custom_animation_progress = 0.0
+	update_path()
+	process_path()
 
 # these two rotation functions rotate by PI/2
 func rotate_clockwise(vector: Vector2):
@@ -189,7 +206,7 @@ func process_path():
 func add_segment():
 	var path: Path2D = $SubSegmentPath
 	for i in range(subsegments_per_segment):
-		var segment = $SubSegmentFollow.duplicate()
+		var segment = $SubSegmentPath/SubSegmentFollow.duplicate()
 		# segment.show()
 		path.add_child(segment)
 		
@@ -207,8 +224,8 @@ func update_path():
 	var path: Path2D = $SubSegmentPath
 	var curve: Curve2D = path.get_curve()
 	curve.clear_points()
-	if snake_length > 1:
-		curve.add_point(tile_map.map_to_local(grid_location + new_direction) - self.position)
+	#if snake_length > 1:
+	curve.add_point(tile_map.map_to_local(grid_location + new_direction) - self.position)
 	var curr = self
 	while curr:
 		curve.add_point(curr.position - self.position)

@@ -53,10 +53,10 @@ shape = SubResource("CapsuleShape2D_eeoup")
 [node name="SubSegmentPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_g71r3")
 
-[node name="SubSegmentFollow" type="PathFollow2D" parent="."]
+[node name="SubSegmentFollow" type="PathFollow2D" parent="SubSegmentPath"]
 script = ExtResource("5_78svb")
 
-[node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentFollow"]
+[node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentPath/SubSegmentFollow"]
 z_as_relative = false
 y_sort_enabled = true
 material = ExtResource("3_kfaw8")
