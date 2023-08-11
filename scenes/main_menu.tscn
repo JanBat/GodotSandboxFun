@@ -84,6 +84,7 @@ text = "YOUR SCORE: 0"
 vertical_alignment = 1
 
 [node name="TITLE" type="Label" parent="."]
+layout_mode = 0
 offset_left = -9.0
 offset_top = -52.0
 offset_right = 735.0
@@ -97,6 +98,7 @@ vertical_alignment = 1
 [node name="BACKGROUND" type="TextureRect" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_2nv43")
+layout_mode = 0
 offset_left = -1.0
 offset_top = -4.0
 offset_right = 716.0
