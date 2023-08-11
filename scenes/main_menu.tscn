@@ -17,30 +17,21 @@ shader_parameter/speed = 5.0
 
 [node name="MENU" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_6em6x")
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Start_Options_Quit" type="VBoxContainer" parent="."]
 top_level = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 88.0
-offset_top = 4.0
-offset_right = 256.0
-offset_bottom = 105.0
-grow_vertical = 2
-metadata/_edit_lock_ = true
+layout_mode = 0
+offset_left = 75.0
+offset_top = 500.0
+offset_right = 270.0
+offset_bottom = 676.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
-[node name="START" type="Button" parent="VBoxContainer"]
+[node name="START" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
@@ -49,62 +40,33 @@ theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "START"
 
-[node name="OPTIONS" type="Button" parent="VBoxContainer"]
+[node name="OPTIONS" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "OPTIONS"
 
-[node name="QUIT" type="Button" parent="VBoxContainer"]
+[node name="QUIT" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
 
-[node name="TITLE" type="Label" parent="."]
+[node name="ScoreContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 744.0
-offset_bottom = 416.0
-theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 80
-text = "SNAKE EATS COIN"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
+offset_left = 350.0
+offset_top = 500.0
+offset_right = 667.0
+offset_bottom = 819.0
 
-[node name="BACKGROUND" type="TextureRect" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_2nv43")
-layout_mode = 0
-offset_top = -1.0
-offset_right = 717.0
-offset_bottom = 1128.0
-texture = ExtResource("2_5w6p3")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -374.0
-offset_top = -609.0
-offset_right = -57.0
-offset_bottom = -290.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="SCOREBOARDLABEL" type="Label" parent="VBoxContainer2"]
+[node name="SCOREBOARDLABEL" type="Label" parent="ScoreContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 40
 text = "SCORE BOARD"
 horizontal_alignment = 1
 
-[node name="HIGHSCORELABEL" type="Label" parent="VBoxContainer2"]
+[node name="HIGHSCORELABEL" type="Label" parent="ScoreContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")
@@ -113,7 +75,7 @@ text = "HIGH SCORE: 9999"
 vertical_alignment = 1
 script = ExtResource("5_yn5mu")
 
-[node name="CURRENTSCORELABEL" type="Label" parent="VBoxContainer2"]
+[node name="CURRENTSCORELABEL" type="Label" parent="ScoreContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")
@@ -121,36 +83,51 @@ theme_override_font_sizes/font_size = 40
 text = "YOUR SCORE: 0"
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -48.0
-offset_right = 1228.0
-offset_bottom = 229.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="TITLE" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -52.0
+offset_right = 735.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 80
+text = "SNAKE EATS COIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BACKGROUND" type="TextureRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_2nv43")
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 716.0
+offset_bottom = 1125.0
+texture = ExtResource("2_5w6p3")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="SocialMedia" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 1000.0
+offset_right = 1828.0
+offset_bottom = 1277.0
 scale = Vector2(0.15, 0.15)
 alignment = 1
 
-[node name="LINKEDIN" type="Button" parent="HBoxContainer"]
+[node name="LINKEDIN" type="Button" parent="SocialMedia"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 icon = ExtResource("5_am066")
 
-[node name="YOUTUBE" type="Button" parent="HBoxContainer"]
+[node name="YOUTUBE" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("6_2qrgh")
 
-[node name="INSTAGRAM" type="Button" parent="HBoxContainer"]
+[node name="INSTAGRAM" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("7_ql5oj")
 
-[node name="GODOT" type="Button" parent="HBoxContainer"]
+[node name="GODOT" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("8_n4ieo")
 
@@ -160,8 +137,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -313.0
-offset_bottom = -208.0
+offset_left = 146.0
+offset_top = 833.0
+offset_right = 586.0
+offset_bottom = 938.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_jolsj")
@@ -171,6 +150,6 @@ text = "Winner or loser
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/START" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/OPTIONS" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/QUIT" to="." method="_on_quit_pressed"]

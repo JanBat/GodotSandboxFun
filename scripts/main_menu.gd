@@ -7,8 +7,8 @@ extends Control
 #
 # -----------------------------------------------------
 # VARIABLES: 
-@onready var current_label = $VBoxContainer2/CURRENTSCORELABEL
-@onready var highscore_label = $VBoxContainer2/HIGHSCORELABEL
+@onready var current_label = $ScoreContainer/CURRENTSCORELABEL
+@onready var highscore_label = $ScoreContainer/HIGHSCORELABEL
 # change with variable that gets length of snake
 var current_score = 0
 
