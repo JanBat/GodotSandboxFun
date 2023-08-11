@@ -14,5 +14,13 @@ func _process(delta):
 	pass
 
 func get_gobbled_up():
-	position = tile_map.map_to_local(Vector2(randi_range(0,7), randi_range(0,7)))
+	var position_candidates = tile_map.get_used_cells(0)
+	# remove trees
+	position_candidates = position_candidates.filter(
+		func(cell): return not tile_map.get_cell_tile_data(1, cell)
+	)
+	# remove coins
+	# remove snakesegments
+	
+	position = tile_map.map_to_local(position_candidates[randi_range(0, len(position_candidates))])
 
