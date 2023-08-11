@@ -33,7 +33,7 @@ func get_gobbled_up():
 		)
 	
 	if position_candidates:
-		position = tile_map.map_to_local(position_candidates[randi_range(0, len(position_candidates))])
+		position = tile_map.map_to_local(position_candidates[randi_range(0, len(position_candidates)-1)])
 	else:
 		no_more_space_for_coins.emit()
 		queue_free()
