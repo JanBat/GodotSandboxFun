@@ -3,16 +3,14 @@ extends Area2D
 signal no_more_space_for_coins()
 
 @export var tile_map: TileMap
-@export var grid_location: Vector2
 
 
 func _ready():
-	position = tile_map.map_to_local(grid_location)
-	
+	# snap position to grid
+	position = tile_map.map_to_local(
+		tile_map.local_to_map(position)
+	)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func get_gobbled_up():
 	var position_candidates = tile_map.get_used_cells(0)

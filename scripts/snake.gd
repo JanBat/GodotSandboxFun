@@ -47,17 +47,19 @@ var polkadots_within_radius = 15.0
 @export
 var dots_per_segment = 1
 
-var time_to_move = false
-
 @export var next_segment : Area2D
 @export var tile_map: TileMap
-@export var grid_location: Vector2
+var grid_location: Vector2
 
 @export var snake_shader: ShaderMaterial
 
 var custom_animation_progress: float = 0.0
 
 func _ready():
+	# snap position to grid
+	position = tile_map.map_to_local(
+		tile_map.local_to_map(position)
+	)
 	
 	# initialize segments
 	direction = SE
@@ -73,7 +75,21 @@ func _ready():
 
 
 func _on_move_timer_timeout():
-	time_to_move = true
+	if coins_eaten >= 1:
+		var new_last = SnakeSegment.instantiate()
+		add_sibling(new_last)
+		new_last.position = last_segment.position
+		new_last.connect_move_signal(last_segment.moved)
+		last_segment.next_segment = new_last
+		last_segment = new_last
+		snake_length += 1
+		coins_eaten -= 1
+		# $MoveTimer.wait_time *= 0.98
+		add_segment()
+		if snake_length >= min_snake_length_for_difficulty_increase:
+			speed *= 0.99 # doesn't work quite yet
+		
+	move()
 	
 
 func _process(delta):
@@ -87,25 +103,6 @@ func _process(delta):
 		new_direction = direction
 	
 	custom_animation_progress += delta #/ $MoveTimer.wait_time
-	
-	if time_to_move:
-		if coins_eaten >= 1:
-			var new_last = SnakeSegment.instantiate()
-			add_sibling(new_last)
-			new_last.position = last_segment.position
-			new_last.connect_move_signal(last_segment.moved)
-			last_segment.next_segment = new_last
-			last_segment = new_last
-			snake_length += 1
-			coins_eaten -= 1
-			# $MoveTimer.wait_time *= 0.98
-			add_segment()
-			if snake_length >= min_snake_length_for_difficulty_increase:
-				speed *= 0.99 # doesn't work quite yet
-		
-		move()
-		# custom_animation_progress = 0.0
-		time_to_move = false
 	
 	update_path()
 	process_path()
