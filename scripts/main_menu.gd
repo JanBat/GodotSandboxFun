@@ -8,8 +8,6 @@ extends Control
 # VARIABLES: 
 @onready var current_label = $SCOREBOARD/CURRENTSCORELABEL
 @onready var highscore_label = $SCOREBOARD/HIGHSCORELABEL
-@onready var banner_message = $"ParallaxBackground2/ParallaxLayer/MESSAGEBANNER/GAME MESSAGE"
-
 # change with variable that gets length of snake
 var current_score = 0
 # -----------------------------------------------------
