@@ -9,17 +9,17 @@ extends Control
 ## VARIABLES: 
 @onready var current_label = $ScoreContainer/CURRENTSCORELABEL
 @onready var highscore_label = $ScoreContainer/HIGHSCORELABEL
-# change with variable that gets length of snake
+# change with variable that gets length of snakeW
 var current_score = 0
 var sound_on: bool = false
-## -----------------------------------------------------
-func _ready():
-	
-	$Start_Options_Quit/OPTIONS/ColorRect.hide()
-	pass
+
 ##--------------------------------------------------------
 ##  BUTTON FUCTIONS ON MAIN MENU:
+
 func _on_start_pressed():
+	# show score next time menu is visible
+	$Start_Options_Quit/OPTIONS/ColorRect.hide()
+	$ScoreContainer.show()
 	var start_scene = preload("res://scenes/level.tscn").instantiate() #Not in main function because want new game to start only when button pressed
 	start_scene.game_over.connect(on_game_over)  #Allows game over function to show handler for creating a new scene
 	get_tree().root.add_child(start_scene)
@@ -41,6 +41,8 @@ func _on_soundcheck_toggled(button_pressed):
 func _on_quit_pressed():
 	get_tree().quit()
 	print("END GAME")
+
+
 ##---------------------------------------
 ## SCORE FUNCTIONS: 
 ##  When back to the main menu this are available to be exicutied 
@@ -54,7 +56,7 @@ func print_high_score(score):
 		highscore_label.text = "High Score: " + str(FileSaveLoad.highest_record)
 	FileSaveLoad.save_score()
 
-##---------------------------------------
+## game over!
 func on_game_over(score):
 	print_current_score(score)
 	print_high_score(score)

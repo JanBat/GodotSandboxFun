@@ -1,5 +1,9 @@
 extends Node2D
 
+
+## an optional toggle for debug purposes; 
+## when toggled on, displays Labels on each cell
+## of the TileMap with its coordinates
 @export
 var debug_grid: bool:
 	get:
@@ -13,32 +17,24 @@ var debug_grid: bool:
 				else:
 					label.hide()
 
+## used to pass the game over signal from snake to the main game loop
+## and clean up the level in the meantime
 signal game_over(score)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	init_debug_grid()
 
 
-var desired_position: Vector2 = position
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# position += (desired_position - position) * delta * 0.5
-	pass
-
+## pass on signal and end the level
 func _on_snake_game_over_sig(score):
 	# WE WOULD LIKE TO SHOW MESSAGE
 	queue_free()
 	game_over.emit(score)
 
-
-func _on_snake_moved(from, to):
-	# position += from - to
-	pass
-
-
-func _on_snake_camera_suggestion(pos):
-	desired_position = -pos + Vector2(0.0, 350.0) # TODO: use screensize instead
-	
+## create a grid of labels overlayed on top of the TileMap
+## to display each cell's position; requires 
+## debug_grid to be true to be shown
 func init_debug_grid():
 	for layer in range(5):
 		for cell in $TileMap.get_used_cells(layer):

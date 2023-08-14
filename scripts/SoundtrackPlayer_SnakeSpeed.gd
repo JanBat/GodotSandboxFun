@@ -1,15 +1,5 @@
 extends AudioStreamPlayer
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
+## when speed increases, so does the soundtrack!
 func _on_snake_speed_changed(new_factor):
 	pitch_scale = 1 / new_factor

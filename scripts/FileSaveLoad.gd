@@ -5,8 +5,6 @@ extends Node
 # VARIABLES: 
 const saved_file = "user://saved_highscore.dat"
 var highest_record =0
-
-
 #-------------------------------------------------------------------------
 func _ready():
 	load_score()

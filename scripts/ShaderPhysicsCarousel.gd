@@ -1,17 +1,22 @@
 extends Node2D
+## this script controls the invisible geometries
+## floating around in backdrop.tscn in order to pass
+## pass location parameters to the uniform variables
+## of its canvas shader (rotating rainbowy swirly thing)
 
+## speed at which individual PathFollow2Ds
+## rotate around the Path describing its shape
 @export
 var speed = 0.3
 
+
+## material of the backdrop canvas
 @export
 var shader: ShaderMaterial
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## update the geometries that serve as orientation for 
+## backdrop.gdshader
 func _process(delta):
 	var path = $RedPath
 	var follow: PathFollow2D = path.get_node("PathFollow2D")
