@@ -1,28 +1,48 @@
 class_name Snake extends CharacterBody2D
 
+
+# notify downstream segments of position change
+signal moved(from: Vector2, to: Vector2)
+# notify main camera of new position
+signal camera_suggestion(pos: Vector2)
+# notify level of game over condition being met
+signal game_over_sig(score: int)
+# notify AudioPlayer of speed change
+signal speed_changed(new_factor: float)
+
 const SnakeSegment = preload("res://scenes/snake_body_segment.tscn")
 
-signal moved(from: Vector2, to: Vector2)
-signal camera_suggestion(pos: Vector2)
-signal game_over_sig(score)
-signal speed_changed(new_factor)
+# 1 step on every other beat (150bpm base)
+const base_speed = 60.0 / 150.0 * 2 
 
-var direction: Vector2 = Vector2.ZERO
-var new_direction: Vector2 = Vector2.ZERO
+# how many shaded segments for logical segment
+const subsegments_per_segment = 4
 
+# how far do the dots stray from the center of segments
+const polkadots_within_radius = 15.0
+
+# how many dots per shaded subsegment
+const dots_per_segment = 1
+
+# the TileMap our intrepid Snake travels on
+@export var tile_map: TileMap
+# Reference to the Shader rendering our Snake, used for passing uniforms
+@export var snake_shader: ShaderMaterial
+
+
+# direction the snake has gone on its last turn
+var direction: Vector2i = Vector2.ZERO
+# direction the snake is set to go on its current turn
+var new_direction: Vector2i = Vector2.ZERO
+
+# keeps track of coins that have been eaten, but not yet turned into a new body segment
 var coins_eaten = 1  # snake with length 1 looks a bit glitchy, so let's have it start out at length 2
 
-const SE = Vector2(1,0)
-# not actually correct
-#const SW  = Vector2(0,1)
-#const NW = Vector2(-1,0)
-#const NE = Vector2(0,-1)
-
-var base_speed = 60.0 / 150.0 * 2 # step on every other beat (150bpm base)
-
 # grace period before starting to increase difficulty (speed)
-var min_snake_length_for_difficulty_increase = 4
+var min_snake_length_for_difficulty_increase = 10
 
+# speed affects the time in between Snake movement ticks
+# and Soundtrack playback speed
 var speed = 1.0:
 	get:
 		return speed
@@ -31,45 +51,29 @@ var speed = 1.0:
 		$MoveTimer.wait_time = value * base_speed
 		speed_changed.emit(value)
 
+# last_segment and snake_length are updated with each snake segment added
 var last_segment = self
 var snake_length = 1
 
-# how many shaded segments for logical segment
-@export
-var subsegments_per_segment = 4
+# next downstream segment of the snake
+var next_segment : Area2D
 
+# snake location on the Tilemap
+var grid_location: Vector2i
 
-# how far do the dots stray from the center of segments
-@export
-var polkadots_within_radius = 15.0
-
-# how many dots per shaded segment
-@export
-var dots_per_segment = 1
-
-@export var next_segment : Area2D
-@export var tile_map: TileMap
-var grid_location: Vector2
-
-@export var snake_shader: ShaderMaterial
-
+# keeps track of how far along individual snake subsegments
+# should be rendered along their section of the Path2D describing the Snake
 var custom_animation_progress: float = 0.0
 
 func _ready():
 	# snap position to grid
-	position = tile_map.map_to_local(
-		tile_map.local_to_map(position)
-	)
-	
-	# initialize segments
-	direction = SE
-	new_direction = SE
+	grid_location = tile_map.local_to_map(position)
 	position = tile_map.map_to_local(grid_location)
 	
-	# set up signals for existing segments:
-	while last_segment.next_segment:
-		last_segment.next_segment.connect_move_signal(last_segment.moved)
-		last_segment = last_segment.next_segment
+	# initialize segments
+	const SE = Vector2(1,0)
+	direction = SE
+	new_direction = SE
 
 	add_segment()
 
@@ -84,7 +88,6 @@ func _on_move_timer_timeout():
 		last_segment = new_last
 		snake_length += 1
 		coins_eaten -= 1
-		# $MoveTimer.wait_time *= 0.98
 		add_segment()
 		if snake_length >= min_snake_length_for_difficulty_increase:
 			speed *= 0.99 # doesn't work quite yet
@@ -102,8 +105,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("steer_ahead"):
 		new_direction = direction
 	
-	custom_animation_progress += delta #/ $MoveTimer.wait_time
-	
+	custom_animation_progress += delta
+	# something's still glitchy here
+	# custom_animation_progress = ($MoveTimer.wait_time - $MoveTimer.time_left) / $MoveTimer.wait_time
 	update_path()
 	process_path()
 
@@ -131,20 +135,19 @@ func move():
 	update_path()
 	process_path()
 
-# these two rotation functions rotate by PI/2
+# rotate by PI/2
 func rotate_clockwise(vector: Vector2):
 	return Vector2(
 		vector.x * 0 + vector.y * -1,
 		vector.x * 1 + vector.y * 0
 	)
 
+# rotate by PI/2
 func rotate_counter_clockwise(vector: Vector2):
 	return Vector2(
 		vector.x * 0 + vector.y * 1,
 		vector.x * -1 + vector.y * 0)
 
-
-var Coin = load("res://scenes/coin.tscn")
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("hazard"):
@@ -178,7 +181,8 @@ func process_path():
 		
 		segment.progress_ratio = 1 - (float(segment_index) / (float(len(sub_segments) + subsegments_per_segment)) \
 							+ custom_animation_progress / (float(len(sub_segments))/subsegments_per_segment))
-		
+							# alternative form that's smoother but occasionally glitches:
+							# + ($MoveTimer.wait_time - $MoveTimer.time_left) / $MoveTimer.wait_time / (float(len(sub_segments))/subsegments_per_segment))
 							
 		# so the pathfollow still rotates but its graphic appears upright
 		segment.get_node("SubSegmentGraphic").rotation = - segment.rotation
