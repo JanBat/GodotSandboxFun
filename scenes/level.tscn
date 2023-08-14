@@ -150,7 +150,6 @@ label_settings = SubResource("LabelSettings_pb8xq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_tv3ic")
-autoplay = true
 script = ExtResource("10_ong1w")
 
 [connection signal="game_over_sig" from="TileMap/Snake" to="." method="_on_snake_game_over_sig"]

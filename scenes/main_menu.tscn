@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://spjcu6qk7jd5"]
+[gd_scene load_steps=11 format=3 uid="uid://spjcu6qk7jd5"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6em6x"]
 [ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_5w6p3"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dr6tirvnnuvqu" path="res://art/LOGO/YouTube.png" id="6_2qrgh"]
 [ext_resource type="Texture2D" uid="uid://b0jskn4j6tbuc" path="res://art/LOGO/instagram.png" id="7_ql5oj"]
 [ext_resource type="Texture2D" uid="uid://dxtmdn0kbht20" path="res://art/LOGO/godot.png" id="8_n4ieo"]
-[ext_resource type="Script" path="res://scenes/GameStatusBanner.gd" id="10_bcoda"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nv43"]
 shader = ExtResource("3_mc0n7")
@@ -18,162 +17,167 @@ shader_parameter/speed = 5.0
 
 [node name="MENU" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_6em6x")
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Start_Options_Quit" type="VBoxContainer" parent="."]
 top_level = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
 offset_left = 75.0
-offset_top = -40.0
+offset_top = 500.0
 offset_right = 270.0
-offset_bottom = 136.0
-grow_vertical = 2
-metadata/_edit_lock_ = true
+offset_bottom = 676.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
-[node name="START" type="Button" parent="VBoxContainer"]
+[node name="START" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
-theme_override_colors/font_hover_color = Color(0.870588, 0.137255, 0.137255, 1)
+theme_override_colors/font_hover_color = Color(0.870588, 0.811765, 0.137255, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "START"
 
-[node name="OPTIONS" type="Button" parent="VBoxContainer"]
+[node name="OPTIONS" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.137255, 0.372549, 1, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "OPTIONS"
 
-[node name="QUIT" type="Button" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="Start_Options_Quit/OPTIONS"]
+visible = false
 layout_mode = 2
+offset_left = 212.0
+offset_top = -13.0
+offset_right = 638.0
+offset_bottom = 281.0
+color = Color(0.407843, 0.407843, 0.407843, 0.552941)
+
+[node name="OPTIONSMENU" type="VBoxContainer" parent="Start_Options_Quit/OPTIONS/ColorRect"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.223
+anchor_bottom = 0.223
+offset_left = 19.0
+offset_top = -65.562
+offset_right = 431.0
+offset_bottom = 334.438
+
+[node name="SOUNDCHECK" type="CheckBox" parent="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SOUND"
+expand_icon = true
+
+[node name="HOWTOPLAY" type="RichTextLabel" parent="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "HOW TO PLAY: 
+Use your Left and right arrow keys to move the snake.  Try to eat as many coins as you can without running into objects or falling off the edge of the earth."
+fit_content = true
+
+[node name="QUIT" type="Button" parent="Start_Options_Quit"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.631373, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
 
-[node name="TITLE" type="Label" parent="."]
+[node name="ScoreContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 744.0
-offset_bottom = 416.0
+offset_left = 273.0
+offset_top = 455.0
+offset_right = 713.0
+offset_bottom = 819.0
+
+[node name="SCOREBOARDLABEL" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.815686)
 theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 80
-text = "SNAKE EATS COIN"
+theme_override_font_sizes/font_size = 60
+text = "SCORE BOARD"
+horizontal_alignment = 1
+
+[node name="HIGHSCORELABEL" type="Label" parent="ScoreContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.815686)
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 50
+text = "HIGH SCORE: 9999"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
+script = ExtResource("5_yn5mu")
+
+[node name="CURRENTSCORELABEL" type="Label" parent="ScoreContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.815686)
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 50
+text = "YOUR SCORE: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TITLE" type="Label" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 84.0
+offset_right = 715.0
+offset_bottom = 438.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.917647)
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("2_jolsj")
+theme_override_font_sizes/font_size = 125
+text = "SNAKE EATS 
+COIN"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BACKGROUND" type="TextureRect" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_2nv43")
 layout_mode = 0
-offset_top = -1.0
-offset_right = 717.0
-offset_bottom = 1128.0
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 734.0
+offset_bottom = 1125.0
 texture = ExtResource("2_5w6p3")
 expand_mode = 1
 stretch_mode = 1
-metadata/_edit_lock_ = true
 
-[node name="SCOREBOARD" type="VBoxContainer" parent="."]
+[node name="SocialMedia" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 273.0
-offset_top = 455.0
-offset_right = 590.0
-offset_bottom = 774.0
-
-[node name="SCOREBOARDLABEL" type="Label" parent="SCOREBOARD"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 40
-text = "SCORE BOARD"
-horizontal_alignment = 1
-
-[node name="HIGHSCORELABEL" type="Label" parent="SCOREBOARD"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 40
-text = "HIGH SCORE: 9999"
-vertical_alignment = 1
-script = ExtResource("5_yn5mu")
-
-[node name="CURRENTSCORELABEL" type="Label" parent="SCOREBOARD"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 40
-text = "YOUR SCORE: 0"
-vertical_alignment = 1
-
-[node name="SOCIALLINKS" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -48.0
-offset_right = 1228.0
-offset_bottom = 229.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = 265.0
+offset_top = 1010.0
+offset_right = 1593.0
+offset_bottom = 1287.0
 scale = Vector2(0.15, 0.15)
 alignment = 1
-metadata/_edit_lock_ = true
 
-[node name="LINKEDIN" type="Button" parent="SOCIALLINKS"]
+[node name="LINKEDIN" type="Button" parent="SocialMedia"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 icon = ExtResource("5_am066")
 
-[node name="YOUTUBE" type="Button" parent="SOCIALLINKS"]
+[node name="YOUTUBE" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("6_2qrgh")
 
-[node name="INSTAGRAM" type="Button" parent="SOCIALLINKS"]
+[node name="INSTAGRAM" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("7_ql5oj")
 
-[node name="GODOT" type="Button" parent="SOCIALLINKS"]
+[node name="GODOT" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("8_n4ieo")
 
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-layer = 0
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
-position = Vector2(-337, 693)
-script = ExtResource("10_bcoda")
-
-[node name="MESSAGEBANNER" type="VBoxContainer" parent="ParallaxBackground2/ParallaxLayer"]
-offset_left = 1.0
-offset_top = 84.0
-offset_right = 1329.0
-offset_bottom = 278.0
-alignment = 1
-
-[node name="GAMEMESSAGE" type="Label" parent="ParallaxBackground2/ParallaxLayer/MESSAGEBANNER"]
-custom_minimum_size = Vector2(1000, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jolsj")
-theme_override_font_sizes/font_size = 200
-text = "MESSAGE
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="VBoxContainer/START" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/OPTIONS" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_pressed"]
+[connection signal="toggled" from="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_toggled"]
+[connection signal="pressed" from="Start_Options_Quit/QUIT" to="." method="_on_quit_pressed"]
