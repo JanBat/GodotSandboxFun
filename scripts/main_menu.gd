@@ -17,7 +17,8 @@ var FileSaveLoad = load("res://scripts/FileSaveLoad.gd").new()
 @onready var highscore_label = $ScoreContainer/HIGHSCORELABEL
 
 ## toggle for playing sound at start of game or not
-var sound_on: bool = false
+@onready
+var sound_on: bool = $Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK.button_pressed
 
 
 ##--------------------------------------------------------
