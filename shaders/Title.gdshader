@@ -7,5 +7,4 @@ uniform float speed = 10.0;
 
 void vertex() {
 	VERTEX.y += height * sin((UV.x) + (speed * TIME));
-	
 }
