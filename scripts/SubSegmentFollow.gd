@@ -1,13 +1,6 @@
 extends PathFollow2D
+## this script's only purpose is to hold the 
+## "polkadots" array
 
-
-# this holds the spots of the snake, to be used for rendering
+## this holds the spots of the snake, to be used for rendering
 var polkadots = []
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
