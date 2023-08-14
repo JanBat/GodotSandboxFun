@@ -179,6 +179,5 @@ icon = ExtResource("8_n4ieo")
 
 [connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_pressed"]
 [connection signal="toggled" from="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_toggled"]
 [connection signal="pressed" from="Start_Options_Quit/QUIT" to="." method="_on_quit_pressed"]
