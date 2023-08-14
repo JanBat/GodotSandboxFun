@@ -13,6 +13,8 @@ extends Control
 var current_score = 0
 var sound_on: bool = false
 
+var FileSaveLoad = load("res://scripts/FileSaveLoad.gd").new()
+
 ##--------------------------------------------------------
 ##  BUTTON FUCTIONS ON MAIN MENU:
 
@@ -50,11 +52,9 @@ func print_current_score(score):
 	current_label.text = "YOUR SCORE: " + str(score)
 	
 func print_high_score(score):
-	if score >= FileSaveLoad.highest_record:
-		#print("check HR " + str(SaveLoad.highest_record))
-		FileSaveLoad.highest_record = score
-		highscore_label.text = "High Score: " + str(FileSaveLoad.highest_record)
-	FileSaveLoad.save_score()
+	if score >= FileSaveLoad.load_score():
+		highscore_label.text = "High Score: " + str(score)
+		FileSaveLoad.save_score(score)
 
 ## game over!
 func on_game_over(score):
