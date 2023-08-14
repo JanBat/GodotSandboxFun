@@ -14,7 +14,8 @@ var current_score = 0
 var sound_on: bool = false
 ## -----------------------------------------------------
 func _ready():
-	$Start_Options_Quit/OPTIONS/OPTIONSMENU.hide()
+	
+	$Start_Options_Quit/OPTIONS/ColorRect.hide()
 	pass
 ##--------------------------------------------------------
 ##  BUTTON FUCTIONS ON MAIN MENU:
@@ -28,9 +29,9 @@ func _on_start_pressed():
 func _on_options_pressed():
 	if $ScoreContainer.visible:
 		$ScoreContainer.hide()
-		$Start_Options_Quit/OPTIONS/OPTIONSMENU.show()
+		$Start_Options_Quit/OPTIONS/ColorRect.show()
 	else:
-		$Start_Options_Quit/OPTIONS/OPTIONSMENU.hide()
+		$Start_Options_Quit/OPTIONS/ColorRect.hide()
 		$ScoreContainer.show()
 		
 func _on_soundcheck_toggled(button_pressed):
