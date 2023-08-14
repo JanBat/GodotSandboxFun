@@ -70,6 +70,7 @@ offset_bottom = 334.438
 [node name="SOUNDCHECK" type="CheckBox" parent="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+button_pressed = true
 text = "SOUND"
 expand_icon = true
 
