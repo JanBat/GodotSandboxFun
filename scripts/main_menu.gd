@@ -35,10 +35,11 @@ func _on_options_pressed():
 	else:
 		$Start_Options_Quit/OPTIONS/ColorRect.hide()
 		$ScoreContainer.show()
-		
+	
+	
 func _on_soundcheck_toggled(button_pressed):
 	sound_on = button_pressed
-	print(sound_on)
+	
 
 func _on_quit_pressed():
 	get_tree().quit()
