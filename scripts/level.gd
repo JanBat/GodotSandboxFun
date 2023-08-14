@@ -49,4 +49,12 @@ func init_debug_grid():
 			if debug_grid:
 				new_label.show()
 			$TileMap/GridLabels.add_child(new_label)
-	
+## --------------------------------------------------------------------
+## GAME MUSIC:
+## Main menu, options button, sound check box.  If checked sound will play during game. 
+## if unchecked no sound during game.
+func play_sound(sound_on):
+	if sound_on == true:
+		$AudioStreamPlayer.play()
+	else:
+		$AudioStreamPlayer.stop()

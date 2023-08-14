@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ci44kyr41ubf3"]
 
-[ext_resource type="Material" uid="uid://ddj5iai8lx26b" path="res://shaders/backdrop.tres" id="1_11msr"]
+[ext_resource type="Material" uid="uid://5b5fxxvq4af1" path="res://shaders/backdrop.tres" id="1_11msr"]
 [ext_resource type="Texture2D" uid="uid://pkpvwvknjjn5" path="res://art/boxCoinAlt.png" id="2_5lews"]
 [ext_resource type="Script" path="res://scripts/ShaderPhysicsCarousel.gd" id="2_oplaa"]
 [ext_resource type="Texture2D" uid="uid://ctwytdb3diji4" path="res://art/Tile/brown_block.png" id="4_l5yub"]

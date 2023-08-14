@@ -35,19 +35,38 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
-theme_override_colors/font_hover_color = Color(0.870588, 0.137255, 0.137255, 1)
+theme_override_colors/font_hover_color = Color(0.870588, 0.811765, 0.137255, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "START"
 
 [node name="OPTIONS" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.137255, 0.372549, 1, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "OPTIONS"
 
+[node name="OPTIONSMENU" type="VBoxContainer" parent="Start_Options_Quit/OPTIONS"]
+layout_mode = 0
+offset_left = 209.0
+offset_right = 622.0
+offset_bottom = 294.0
+
+[node name="SOUNDCHECK" type="CheckBox" parent="Start_Options_Quit/OPTIONS/OPTIONSMENU"]
+layout_mode = 2
+text = "SOUND"
+
+[node name="HOWTOPLAY" type="Label" parent="Start_Options_Quit/OPTIONS/OPTIONSMENU"]
+layout_mode = 2
+text = "HOW TO PLAY: 
+Use your Left and right arrow keys to move the snake.  
+Try to eat as many coins as you can without running 
+into objects or falling off the edge of the earth."
+
 [node name="QUIT" type="Button" parent="Start_Options_Quit"]
 layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.631373, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jolsj")
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
@@ -154,4 +173,6 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Start_Options_Quit/OPTIONS/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_pressed"]
+[connection signal="toggled" from="Start_Options_Quit/OPTIONS/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_toggled"]
 [connection signal="pressed" from="Start_Options_Quit/QUIT" to="." method="_on_quit_pressed"]
