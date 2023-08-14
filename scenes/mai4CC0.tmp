@@ -34,10 +34,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 75.0
-offset_top = -40.0
-offset_right = 270.0
-offset_bottom = 136.0
+offset_left = 88.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 105.0
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
@@ -85,12 +85,21 @@ expand_mode = 1
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
 [node name="SCOREBOARD" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 273.0
-offset_top = 455.0
-offset_right = 590.0
-offset_bottom = 774.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -609.0
+offset_right = -57.0
+offset_bottom = -290.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="SCOREBOARDLABEL" type="Label" parent="SCOREBOARD"]
 layout_mode = 2
@@ -164,7 +173,7 @@ offset_right = 1329.0
 offset_bottom = 278.0
 alignment = 1
 
-[node name="GAMEMESSAGE" type="Label" parent="ParallaxBackground2/ParallaxLayer/MESSAGEBANNER"]
+[node name="GAME MESSAGE" type="Label" parent="ParallaxBackground2/ParallaxLayer/MESSAGEBANNER"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jolsj")

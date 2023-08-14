@@ -4,17 +4,23 @@ extends Control
 #  Start button, options buttion (Work in progress), quit.
 #  A score board that saves high score on players device and 
 #  loads high score when new game is opened. 
-#
 # -----------------------------------------------------
 # VARIABLES: 
-@onready var current_label = $ScoreContainer/CURRENTSCORELABEL
-@onready var highscore_label = $ScoreContainer/HIGHSCORELABEL
+@onready var current_label = $SCOREBOARD/CURRENTSCORELABEL
+@onready var highscore_label = $SCOREBOARD/HIGHSCORELABEL
 # change with variable that gets length of snake
 var current_score = 0
-
 # -----------------------------------------------------
 func _ready():
-	pass # Replace with function body.
+	pass
+# -----------------------------------------------------
+# AFTER GAME PLAY:
+func on_game_over(score):
+	print_current_score(score)
+	print_high_score(score)
+	print("GAME OVER")
+	menu_banner(score)
+	show()
 #--------------------------------------------------------
 #  BUTTON FUCTIONS ON MAIN MENU
 func _on_start_pressed():
@@ -26,14 +32,14 @@ func _on_start_pressed():
 	
 func _on_options_pressed():
 	# NO FUNCTION YET
-	pass 
+	pass
 
 func _on_quit_pressed():
 	get_tree().quit()
 	print("END GAME")
 #---------------------------------------
 # SCORE FUNCTIONS: 
-#  When back to the main menu this are available to be exicutied 
+#  When back to the main menu this are available to be execute
 func print_current_score(score):
 	current_label.text = "YOUR SCORE: " + str(score)
 	
@@ -43,10 +49,12 @@ func print_high_score(score):
 		FileSaveLoad.highest_record = score
 		highscore_label.text = "High Score: " + str(FileSaveLoad.highest_record)
 	FileSaveLoad.save_score()
-
 #---------------------------------------
-func on_game_over(score):
-	print_current_score(score)
-	print_high_score(score)
+# GAME MESSAGE:
+	
+	
+func menu_banner(score):
 	show()
-
+	print("menu")
+	var banner_message = $ParallaxBackground2/ParallaxLayer/MESSAGEBANNER/GAMEMESSAGE
+	banner_message = " WINNER"
