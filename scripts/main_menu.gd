@@ -7,13 +7,18 @@ extends Control
 ##
 ## -----------------------------------------------------
 ## VARIABLES: 
+
+## class import for file I/O
+var FileSaveLoad = load("res://scripts/FileSaveLoad.gd").new()
+
+## menu node for displaying last achieved score
 @onready var current_label = $ScoreContainer/CURRENTSCORELABEL
+## menu node for displaying highest achieved score
 @onready var highscore_label = $ScoreContainer/HIGHSCORELABEL
-# change with variable that gets length of snakeW
-var current_score = 0
+
+## toggle for playing sound at start of game or not
 var sound_on: bool = false
 
-var FileSaveLoad = load("res://scripts/FileSaveLoad.gd").new()
 
 ##--------------------------------------------------------
 ##  BUTTON FUCTIONS ON MAIN MENU:
@@ -28,6 +33,8 @@ func _on_start_pressed():
 	start_scene.play_sound(sound_on)
 	hide()
 	
+
+## handler for button to toggle between options / scoreboard
 func _on_options_pressed():
 	if $ScoreContainer.visible:
 		$ScoreContainer.hide()
@@ -37,10 +44,12 @@ func _on_options_pressed():
 		$ScoreContainer.show()
 	
 	
+## event handler for "sound on/off" checkbox button
 func _on_soundcheck_toggled(button_pressed):
 	sound_on = button_pressed
 	
 
+## end the program
 func _on_quit_pressed():
 	get_tree().quit()
 	print("END GAME")
@@ -48,10 +57,12 @@ func _on_quit_pressed():
 
 ##---------------------------------------
 ## SCORE FUNCTIONS: 
-##  When back to the main menu this are available to be exicutied 
+##  display current score on the proper label
 func print_current_score(score):
 	current_label.text = "YOUR SCORE: " + str(score)
 	
+	
+## print score to the "highscore" label, if high enough
 func print_high_score(score):
 	if score >= FileSaveLoad.load_score():
 		highscore_label.text = "High Score: " + str(score)
