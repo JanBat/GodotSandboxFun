@@ -192,7 +192,8 @@ func rotate_counter_clockwise(vector: Vector2):
 ## in a pickle and wants to sign off for the day
 func faint():
 	$MoveTimer.stop()
-	game_over_sig.emit(snake_length)
+	# subtract 2 from score for initial snake length
+	game_over_sig.emit(snake_length-2)
 
 
 ## intended to be called during _process(), 

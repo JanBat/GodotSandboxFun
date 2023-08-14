@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cescbn2jhg3f5" path="res://art/Tile/green_two.png" id="4_76ykl"]
 [ext_resource type="Texture2D" uid="uid://bt4qa7snl6nar" path="res://art/Tile/T_NB.png" id="5_7xm0d"]
 [ext_resource type="Texture2D" uid="uid://d1thlh812ip15" path="res://art/Tile/Tree_Two.png" id="6_fwog8"]
-[ext_resource type="Script" path="res://scenes/TileMapDebugTool.gd" id="7_ifnrd"]
 [ext_resource type="PackedScene" uid="uid://dsjhm1josomyh" path="res://scenes/snake.tscn" id="7_nn7cm"]
+[ext_resource type="Script" path="res://scripts/TileMapDebugTool.gd" id="7_wrnni"]
 [ext_resource type="PackedScene" uid="uid://cqtaul20rn73m" path="res://scenes/coin.tscn" id="8_hd4ou"]
 [ext_resource type="Script" path="res://scripts/SoundtrackPlayer_SnakeSpeed.gd" id="10_ong1w"]
 
@@ -93,7 +93,7 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(327687, 3, 0, 131078, 3, 0, -65530, 3, 0, 589828, 3, 0, 393215, 3, 0, 65534, 3, 0, -131072, 3, 0)
-script = ExtResource("7_ifnrd")
+script = ExtResource("7_wrnni")
 metadata/_edit_lock_ = true
 
 [node name="Snake" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("7_nn7cm")]
@@ -153,5 +153,4 @@ stream = SubResource("AudioStreamMP3_tv3ic")
 script = ExtResource("10_ong1w")
 
 [connection signal="game_over_sig" from="TileMap/Snake" to="." method="_on_snake_game_over_sig"]
-[connection signal="moved" from="TileMap/Snake" to="." method="_on_snake_moved"]
 [connection signal="speed_changed" from="TileMap/Snake" to="AudioStreamPlayer" method="_on_snake_speed_changed"]

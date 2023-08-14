@@ -36,7 +36,7 @@ func _on_snake_game_over_sig(score):
 ## to display each cell's position; requires 
 ## debug_grid to be true to be shown
 func init_debug_grid():
-	for layer in range(5):
+	for layer in range(1):
 		for cell in $TileMap.get_used_cells(layer):
 			var tile_size = $TileMap.tile_set.tile_size
 			var new_label = $TileMap/GridLabels/Ref.duplicate()

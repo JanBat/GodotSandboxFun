@@ -1,7 +1,12 @@
 shader_type canvas_item;
 
-// maximum 300 dots in predefined array gnarf (TODO: find a way to cheat out dynamic arrays as a uniform)
-const int max_dot_count = 300;
+// this shader renders the individual snake segments
+// inspired by worley noise
+// https://godotshaders.com/snippet/voronoi/
+
+
+// maximum 1000 dots in predefined array
+const int max_dot_count = 1000;
 uniform vec2 dots[max_dot_count];
 
 vec2 random(vec2 uv) {
@@ -11,7 +16,7 @@ vec2 random(vec2 uv) {
 
 void fragment() {
 	if (COLOR.a > 0.1){
-		float r = 0.0;
+		float green = 0.0;
 		vec2 lowest = dots[0];
 		vec2 second_lowest = dots[0];
 		for (int i = 1; i < max_dot_count; i++){
@@ -22,12 +27,9 @@ void fragment() {
 			else if (distance(dots[i], FRAGCOORD.xy) < distance(second_lowest, FRAGCOORD.xy)){
 				second_lowest = dots[i];
 			}
-			//vec2 mod_dot = vec2(abs(dots[i][0]), abs(dots[i][1]));
-			//float dist = distance(FRAGCOORD.xy, mod_dot);
-			
 		}	
-		r = 1.0 - (distance(lowest, FRAGCOORD.xy) / distance(second_lowest, FRAGCOORD.xy));
+		green = 1.0 - (distance(lowest, FRAGCOORD.xy) / distance(second_lowest, FRAGCOORD.xy));
 		
-		COLOR = vec4(0.0, r, 0.0, 1.0);
+		COLOR = vec4(0.05, green, 0.05, 1.0);
 	}
 }
