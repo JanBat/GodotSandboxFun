@@ -4,8 +4,6 @@ class_name Snake extends CharacterBody2D
 
 ## notify downstream segments of position change
 signal moved(from: Vector2, to: Vector2)
-## notify main camera of new position
-signal camera_suggestion(pos: Vector2)
 ## notify level of game over condition being met
 signal game_over_sig(score: int)
 ## notify AudioPlayer of speed change
@@ -217,10 +215,6 @@ func process_path():
 		segment.get_node("SubSegmentGraphic").rotation = - segment.rotation
 		# segment.rotation = 0
 	
-	if sub_segments:
-		camera_suggestion.emit(position + sub_segments[len(sub_segments)-1].position)
-	else:  # at the beginning when no segments are present
-		camera_suggestion.emit(position)
 		
 	# alert shader to polakadot positions
 	var dots = []
