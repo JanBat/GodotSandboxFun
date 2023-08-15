@@ -61,7 +61,7 @@ y_sort_enabled = true
 scale = Vector2(0.25, 0.25)
 tile_map = NodePath("..")
 
-[node name="CollisionShape2D" parent="TileMap/Snake" index="3"]
+[node name="CollisionShape2D" parent="TileMap/Snake" index="2"]
 position = Vector2(0, 0)
 
 [editable path="TileMap/Snake"]

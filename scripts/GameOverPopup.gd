@@ -5,8 +5,9 @@ signal game_end(score)
 var score: int
 
 ## show up when snake triggers game over state
-func _on_snake_game_over_sig(score, snake_position):
+func _on_snake_game_over_sig(final_score, snake_position):
 	position =  snake_position
+	score = final_score
 	$Score.text = "Your Score:" + str(score)
 	get_node("../AudioStreamPlayer").stop()
 	show()
