@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0jskn4j6tbuc"
-path="res://.godot/imported/instagram.png-ad21e5dd0414c1f25eee2c9fbc165fa5.ctex"
+uid="uid://byrtngek0br8r"
+path="res://.godot/imported/GIT2.png-3ccff6382f7692e9542889d77779c67b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/LOGO/instagram.png"
-dest_files=["res://.godot/imported/instagram.png-ad21e5dd0414c1f25eee2c9fbc165fa5.ctex"]
+source_file="res://art/LOGO/GIT2.png"
+dest_files=["res://.godot/imported/GIT2.png-3ccff6382f7692e9542889d77779c67b.ctex"]
 
 [params]
 

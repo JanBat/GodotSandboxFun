@@ -61,3 +61,21 @@ func on_game_over(score):
 	print_current_score(score)
 	print_high_score(score)
 	show()
+
+##---------------------------------------
+## SOCIAL MEDIA LINKS: 
+
+func _on_linkedin_pressed():
+	OS.shell_open("https://www.linkedin.com/company/github")
+
+func _on_godot_pressed():
+	OS.shell_open("https://docs.godotengine.org/en/stable/index.html")
+
+func _on_youtube_pressed():
+	OS.shell_open("https://www.youtube.com/c/GodotEngineOfficial")
+
+func _on_github_pressed():
+	OS.shell_open("https://github.com/JanBat/GodotSandboxFun")
+
+func _on_reddit_pressed():
+	OS.shell_open("https://www.reddit.com/r/godot/")
