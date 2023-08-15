@@ -14,9 +14,12 @@ signal no_more_space_for_coins()
 
 func _ready():
 	# snap position to grid
-	position = tile_map.map_to_local(
-		tile_map.local_to_map(position)
-	)
+	#position = tile_map.map_to_local(
+	#	tile_map.local_to_map(position)
+	#)
+	
+	# force random placement at the start:
+	get_gobbled_up()
 
 ## snake calls this after a collision, 
 ## allowing snake to control all collision-related matters

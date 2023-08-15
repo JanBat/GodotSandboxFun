@@ -21,22 +21,21 @@ var debug_grid: bool:
 ## and clean up the level in the meantime
 signal game_over(score)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	init_debug_grid()
-
-
-## pass on signal and end the level
-func _on_snake_game_over_sig(score):
+func _on_game_over_popup_game_end(score):
 	# WE WOULD LIKE TO SHOW MESSAGE
 	queue_free()
 	game_over.emit(score)
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	init_debug_grid()
 
 ## create a grid of labels overlayed on top of the TileMap
 ## to display each cell's position; requires 
 ## debug_grid to be true to be shown
 func init_debug_grid():
-	for layer in range(5):
+	for layer in range(1):
 		for cell in $TileMap.get_used_cells(layer):
 			var tile_size = $TileMap.tile_set.tile_size
 			var new_label = $TileMap/GridLabels/Ref.duplicate()
@@ -54,3 +53,5 @@ func play_sound(sound_on):
 		$AudioStreamPlayer.play()
 	else:
 		$AudioStreamPlayer.stop()
+
+

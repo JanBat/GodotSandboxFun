@@ -1,10 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb3ir7f88g7dx"]
+[gd_scene load_steps=6 format=3 uid="uid://bb3ir7f88g7dx"]
 
 [ext_resource type="PackedScene" uid="uid://spjcu6qk7jd5" path="res://scenes/main_menu.tscn" id="1_ingts"]
 [ext_resource type="PackedScene" uid="uid://ci44kyr41ubf3" path="res://scenes/backdrop.tscn" id="2_a5ifp"]
+[ext_resource type="FontFile" uid="uid://r2g20ousx1x4" path="res://art/FONT/Hypeblox-L3YGZ.ttf" id="3_1gkol"]
+[ext_resource type="Texture2D" uid="uid://b8b0dumtot3oh" path="res://art/Tile/green_block.png" id="3_8ynv7"]
+[ext_resource type="Script" path="res://scripts/Epilepsy warning.gd" id="3_w3thk"]
 
 [node name="Main" type="Node2D"]
 
 [node name="MENU" parent="." instance=ExtResource("1_ingts")]
 
 [node name="Backdrop" parent="." instance=ExtResource("2_a5ifp")]
+
+[node name="Epilepsy warning" type="Node2D" parent="."]
+z_index = 5
+script = ExtResource("3_w3thk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Epilepsy warning"]
+position = Vector2(354.5, 746.5)
+scale = Vector2(86.1562, 76.2188)
+texture = ExtResource("3_8ynv7")
+
+[node name="Message" type="Label" parent="Epilepsy warning"]
+offset_left = -2.0
+offset_top = 84.0
+offset_right = 715.0
+offset_bottom = 572.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.917647)
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_1gkol")
+theme_override_font_sizes/font_size = 125
+text = "Epilepsy warning
+
+!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Epilepsy warning"]
+offset_left = 28.0
+offset_top = 813.0
+offset_right = 719.0
+offset_bottom = 995.0
+theme_override_fonts/font = ExtResource("3_1gkol")
+theme_override_font_sizes/font_size = 65
+text = "proceed with caution"
+
+[connection signal="pressed" from="Epilepsy warning/Button" to="Epilepsy warning" method="_on_button_pressed"]

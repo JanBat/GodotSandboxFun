@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bijnpyvnyequh"]
+
+[ext_resource type="Script" path="res://scripts/GameOverPopup.gd" id="1_h3lhp"]
+[ext_resource type="FontFile" uid="uid://r2g20ousx1x4" path="res://art/FONT/Hypeblox-L3YGZ.ttf" id="2_addn6"]
+
+[node name="GameOverPopup" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3lhp")
+
+[node name="_Game Over_" type="Label" parent="."]
+layout_mode = 0
+offset_left = -236.0
+offset_top = -157.0
+offset_right = 212.0
+offset_bottom = -68.0
+theme_override_fonts/font = ExtResource("2_addn6")
+theme_override_font_sizes/font_size = 90
+text = "Game Over!"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = -274.0
+offset_top = 111.0
+offset_right = 315.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("2_addn6")
+theme_override_font_sizes/font_size = 90
+text = "Your Score: 0"
+horizontal_alignment = 1
+
+[node name="Back to Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = -404.0
+offset_top = -190.0
+offset_right = 402.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("2_addn6")
+theme_override_font_sizes/font_size = 90
+text = "Back to menu"
+vertical_icon_alignment = 2
+
+[connection signal="pressed" from="Back to Menu" to="." method="_on_back_to_menu_pressed"]
