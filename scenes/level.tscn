@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dmr7tdowfbkt6"]
+[gd_scene load_steps=31 format=3 uid="uid://dmr7tdowfbkt6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_twwiv"]
 [ext_resource type="Texture2D" uid="uid://dnmv86hxm371m" path="res://art/Tile/B_Tree.png" id="2_5dwi8"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/SoundtrackPlayer_SnakeSpeed.gd" id="10_ong1w"]
 [ext_resource type="Texture2D" uid="uid://b5sjpd7107xg0" path="res://art/Tile/BRICK_TC.png" id="11_mpmoj"]
 [ext_resource type="Script" path="res://scripts/TileMapDebugTool.gd" id="12_3x8dn"]
+[ext_resource type="Script" path="res://scripts/CoinGenerator.gd" id="14_ay87k"]
 [ext_resource type="PackedScene" uid="uid://bijnpyvnyequh" path="res://scenes/game_over_popup.tscn" id="16_nrra7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8f8oc"]
@@ -161,31 +162,6 @@ position_smoothing_speed = 0.15
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Coin" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
-z_index = 1
-position = Vector2(33, 114)
-tile_map = NodePath("..")
-
-[node name="Coin2" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
-z_index = 1
-position = Vector2(29, 51)
-tile_map = NodePath("..")
-
-[node name="Coin3" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
-z_index = 1
-position = Vector2(29, 80)
-tile_map = NodePath("..")
-
-[node name="Coin4" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
-z_index = 1
-position = Vector2(-36, 118)
-tile_map = NodePath("..")
-
-[node name="Coin5" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
-z_index = 1
-position = Vector2(-31, 51)
-tile_map = NodePath("..")
-
 [node name="GridLabels" type="Node2D" parent="TileMap"]
 
 [node name="Ref" type="Label" parent="TileMap/GridLabels"]
@@ -197,6 +173,14 @@ offset_right = 54.0
 offset_bottom = 29.0
 text = "25, 13"
 label_settings = SubResource("LabelSettings_pb8xq")
+
+[node name="CoinGenerator" type="Node2D" parent="TileMap"]
+script = ExtResource("14_ay87k")
+
+[node name="Coin" parent="TileMap/CoinGenerator" node_paths=PackedStringArray("tile_map") instance=ExtResource("8_hd4ou")]
+z_index = 1
+position = Vector2(33, 114)
+tile_map = NodePath("../..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_tv3ic")
