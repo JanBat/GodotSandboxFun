@@ -5,7 +5,7 @@ class_name Snake extends CharacterBody2D
 ## notify downstream segments of position change
 signal moved(from: Vector2, to: Vector2)
 ## notify level of game over condition being met
-signal game_over_sig(score: int)
+signal game_over_sig(score: int, position: Vector2)
 ## notify AudioPlayer of speed change
 signal speed_changed(new_factor: float)
 
@@ -192,7 +192,8 @@ func rotate_counter_clockwise(vector: Vector2):
 ## in a pickle and wants to sign off for the day
 func faint():
 	$MoveTimer.stop()
-	game_over_sig.emit(snake_length)
+	# subtract 2 from score for initial snake length
+	game_over_sig.emit(snake_length-2, tile_map.position + position)
 
 
 ## intended to be called during _process(), 
