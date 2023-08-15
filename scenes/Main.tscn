@@ -38,9 +38,9 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Button" type="Button" parent="Epilepsy warning"]
-offset_left = 28.0
+offset_left = -2.0
 offset_top = 813.0
-offset_right = 719.0
+offset_right = 727.0
 offset_bottom = 995.0
 theme_override_fonts/font = ExtResource("3_1gkol")
 theme_override_font_sizes/font_size = 65

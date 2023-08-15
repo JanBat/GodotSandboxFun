@@ -22,5 +22,11 @@ func load_score():
 	var file = FileAccess.open(saved_file, FileAccess.READ)
 	if FileAccess.file_exists(saved_file):
 		return file.get_32()
+	## no file present yet? create one with score 0
+	else:
+		file = FileAccess.open(saved_file, FileAccess.WRITE)
+		file.store_32(0)
+		file.close()
+		return 0
 	
 
