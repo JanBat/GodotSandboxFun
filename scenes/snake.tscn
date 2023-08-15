@@ -17,6 +17,8 @@ height = 22.0
 [sub_resource type="Curve2D" id="Curve2D_g71r3"]
 
 [node name="Snake" type="CharacterBody2D" groups=["snake"]]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_arvse")
 snake_shader = ExtResource("3_kfaw8")
 
@@ -47,9 +49,13 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_eeoup")
 
 [node name="SubSegmentPath" type="Path2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 curve = SubResource("Curve2D_g71r3")
 
 [node name="SubSegmentFollow" type="PathFollow2D" parent="SubSegmentPath"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("5_78svb")
 
 [node name="SubSegmentGraphic" type="Sprite2D" parent="SubSegmentPath/SubSegmentFollow"]

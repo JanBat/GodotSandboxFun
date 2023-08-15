@@ -148,7 +148,6 @@ script = ExtResource("12_3x8dn")
 metadata/_edit_lock_ = true
 
 [node name="Snake" parent="TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("7_nn7cm")]
-y_sort_enabled = true
 position = Vector2(-124, 33)
 tile_map = NodePath("..")
 metadata/_edit_group_ = true
@@ -175,6 +174,8 @@ text = "25, 13"
 label_settings = SubResource("LabelSettings_pb8xq")
 
 [node name="CoinGenerator" type="Node2D" parent="TileMap"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("14_ay87k")
 coin_count = 300
 
