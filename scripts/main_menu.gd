@@ -42,7 +42,6 @@ func _on_quit_pressed():
 	get_tree().quit()
 	print("END GAME")
 
-
 ##---------------------------------------
 ## SCORE FUNCTIONS: 
 ##  When back to the main menu this are available to be exicutied 
@@ -61,3 +60,8 @@ func on_game_over(score):
 	print_current_score(score)
 	print_high_score(score)
 	show()
+
+##---------------------------------------
+## MOVING MESSAGE
+func moving_message():
+	

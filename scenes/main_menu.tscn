@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://spjcu6qk7jd5"]
+[gd_scene load_steps=13 format=3 uid="uid://spjcu6qk7jd5"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6em6x"]
 [ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_5w6p3"]
@@ -9,11 +9,26 @@
 [ext_resource type="Texture2D" uid="uid://dr6tirvnnuvqu" path="res://art/LOGO/YouTube.png" id="6_2qrgh"]
 [ext_resource type="Texture2D" uid="uid://b0jskn4j6tbuc" path="res://art/LOGO/instagram.png" id="7_ql5oj"]
 [ext_resource type="Texture2D" uid="uid://dxtmdn0kbht20" path="res://art/LOGO/godot.png" id="8_n4ieo"]
+[ext_resource type="Script" path="res://scenes/MOVINGMESSAGE.gd" id="10_k7vtj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nv43"]
 shader = ExtResource("3_mc0n7")
 shader_parameter/height = 5.0
 shader_parameter/speed = 5.0
+
+[sub_resource type="GDScript" id="GDScript_tm732"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="MENU" type="Control"]
 layout_mode = 3
@@ -175,6 +190,28 @@ icon = ExtResource("7_ql5oj")
 [node name="GODOT" type="Button" parent="SocialMedia"]
 layout_mode = 2
 icon = ExtResource("8_n4ieo")
+
+[node name="MOVINGBACKGROUND" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="MOVINGMESSAGE" type="ParallaxLayer" parent="MOVINGBACKGROUND"]
+z_index = 1
+script = ExtResource("10_k7vtj")
+
+[node name="GAMEMESSAGE" type="Label" parent="MOVINGBACKGROUND/MOVINGMESSAGE"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = 834.0
+offset_right = -9.0
+offset_bottom = 916.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "START THE GAME"
+script = SubResource("GDScript_tm732")
 
 [connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
