@@ -21,10 +21,10 @@ const subsegments_per_segment = 4
 ## how far do the dots (cells) stray from the center of segments
 ## this is for providing persistent orientation coordinates for the
 ## snake shader
-const polkadots_within_radius = 15.0
+const polkadots_within_radius = 10.0
 
 ## how many dots/cells per shaded subsegment
-const dots_per_segment = 1
+const dots_per_segment = 2
 
 ## grace period before starting to increase difficulty (speed)
 const min_snake_length_for_difficulty_increase: int = 10
