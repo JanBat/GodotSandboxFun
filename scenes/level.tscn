@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmr7tdowfbkt6"]
+[gd_scene load_steps=20 format=3 uid="uid://dmr7tdowfbkt6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_twwiv"]
 [ext_resource type="Texture2D" uid="uid://dnmv86hxm371m" path="res://art/Tile/B_Tree.png" id="2_5dwi8"]
@@ -10,8 +10,7 @@
 [ext_resource type="Script" path="res://scripts/TileMapDebugTool.gd" id="7_wrnni"]
 [ext_resource type="PackedScene" uid="uid://cqtaul20rn73m" path="res://scenes/coin.tscn" id="8_hd4ou"]
 [ext_resource type="Script" path="res://scripts/SoundtrackPlayer_SnakeSpeed.gd" id="10_ong1w"]
-[ext_resource type="Script" path="res://scenes/GameOverPopup.gd" id="11_bmx5f"]
-[ext_resource type="FontFile" uid="uid://r2g20ousx1x4" path="res://art/FONT/Hypeblox-L3YGZ.ttf" id="11_xg50k"]
+[ext_resource type="PackedScene" uid="uid://bijnpyvnyequh" path="res://scenes/game_over_popup.tscn" id="11_tly0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8f8oc"]
 texture = ExtResource("2_5dwi8")
@@ -156,46 +155,6 @@ label_settings = SubResource("LabelSettings_pb8xq")
 stream = SubResource("AudioStreamMP3_tv3ic")
 script = ExtResource("10_ong1w")
 
-[node name="GameOverPopup" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_bmx5f")
+[node name="GameOverPopup" parent="." instance=ExtResource("11_tly0j")]
 
-[node name="_Game Over_" type="Label" parent="GameOverPopup"]
-offset_left = -236.0
-offset_top = -157.0
-offset_right = 212.0
-offset_bottom = -68.0
-theme_override_fonts/font = ExtResource("11_xg50k")
-theme_override_font_sizes/font_size = 90
-text = "Game Over!"
-
-[node name="Score" type="Label" parent="GameOverPopup"]
-offset_left = -274.0
-offset_top = 111.0
-offset_right = 315.0
-offset_bottom = 200.0
-theme_override_fonts/font = ExtResource("11_xg50k")
-theme_override_font_sizes/font_size = 90
-text = "Your Score: 0"
-horizontal_alignment = 1
-
-[node name="Back to Menu" type="Button" parent="GameOverPopup"]
-offset_left = -404.0
-offset_top = -190.0
-offset_right = 402.0
-offset_bottom = 209.0
-theme_override_fonts/font = ExtResource("11_xg50k")
-theme_override_font_sizes/font_size = 90
-text = "Back to menu"
-vertical_icon_alignment = 2
-
-[connection signal="game_over_sig" from="TileMap/Snake" to="GameOverPopup" method="_on_snake_game_over_sig"]
 [connection signal="speed_changed" from="TileMap/Snake" to="AudioStreamPlayer" method="_on_snake_speed_changed"]
-[connection signal="game_end" from="GameOverPopup" to="." method="_on_game_over_popup_game_end"]
-[connection signal="pressed" from="GameOverPopup/Back to Menu" to="GameOverPopup" method="_on_back_to_menu_pressed"]
