@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://spjcu6qk7jd5"]
+[gd_scene load_steps=12 format=3 uid="uid://spjcu6qk7jd5"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_6em6x"]
 [ext_resource type="Texture2D" uid="uid://dp2u0h380twfn" path="res://art/Tile/GREEN BACK.png" id="2_5w6p3"]
@@ -7,8 +7,9 @@
 [ext_resource type="Shader" path="res://shaders/Title.gdshader" id="4_qb1sy"]
 [ext_resource type="Texture2D" uid="uid://b3gqe5s64dt2f" path="res://art/LOGO/linkedin_logo.png" id="5_am066"]
 [ext_resource type="Texture2D" uid="uid://dr6tirvnnuvqu" path="res://art/LOGO/YouTube.png" id="6_2qrgh"]
-[ext_resource type="Texture2D" uid="uid://b0jskn4j6tbuc" path="res://art/LOGO/instagram.png" id="7_ql5oj"]
+[ext_resource type="Texture2D" uid="uid://byrtngek0br8r" path="res://art/LOGO/GIT2.png" id="8_jc8pf"]
 [ext_resource type="Texture2D" uid="uid://dxtmdn0kbht20" path="res://art/LOGO/godot.png" id="8_n4ieo"]
+[ext_resource type="Texture2D" uid="uid://0lbjt181ghfu" path="res://art/LOGO/REDDIT.png" id="9_2iu0a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nv43"]
 shader = ExtResource("4_qb1sy")
@@ -153,31 +154,41 @@ stretch_mode = 1
 
 [node name="SocialMedia" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 265.0
-offset_top = 1010.0
-offset_right = 1593.0
-offset_bottom = 1287.0
+offset_left = 250.0
+offset_top = 1006.0
+offset_right = 1750.0
+offset_bottom = 1285.0
 scale = Vector2(0.15, 0.15)
 alignment = 1
+
+[node name="GODOT" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("8_n4ieo")
+
+[node name="YOUTUBE" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("6_2qrgh")
+
+[node name="GITHUB" type="Button" parent="SocialMedia"]
+custom_minimum_size = Vector2(277, 277)
+layout_mode = 2
+icon = ExtResource("8_jc8pf")
+
+[node name="REDDIT" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("9_2iu0a")
 
 [node name="LINKEDIN" type="Button" parent="SocialMedia"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 icon = ExtResource("5_am066")
 
-[node name="YOUTUBE" type="Button" parent="SocialMedia"]
-layout_mode = 2
-icon = ExtResource("6_2qrgh")
-
-[node name="INSTAGRAM" type="Button" parent="SocialMedia"]
-layout_mode = 2
-icon = ExtResource("7_ql5oj")
-
-[node name="GODOT" type="Button" parent="SocialMedia"]
-layout_mode = 2
-icon = ExtResource("8_n4ieo")
-
 [connection signal="pressed" from="Start_Options_Quit/START" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Start_Options_Quit/OPTIONS" to="." method="_on_options_pressed"]
 [connection signal="toggled" from="Start_Options_Quit/OPTIONS/ColorRect/OPTIONSMENU/SOUNDCHECK" to="." method="_on_soundcheck_toggled"]
 [connection signal="pressed" from="Start_Options_Quit/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SocialMedia/GODOT" to="." method="_on_godot_pressed"]
+[connection signal="pressed" from="SocialMedia/YOUTUBE" to="." method="_on_youtube_pressed"]
+[connection signal="pressed" from="SocialMedia/GITHUB" to="." method="_on_github_pressed"]
+[connection signal="pressed" from="SocialMedia/REDDIT" to="." method="_on_reddit_pressed"]
+[connection signal="pressed" from="SocialMedia/LINKEDIN" to="." method="_on_linkedin_pressed"]

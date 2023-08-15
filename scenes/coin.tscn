@@ -15,7 +15,6 @@ point_count = 13
 radius = 7.0
 
 [node name="Coin" type="Area2D" groups=["coin"]]
-position = Vector2(367, 281)
 script = ExtResource("1_itvqv")
 metadata/_edit_group_ = true
 
@@ -37,6 +36,7 @@ rotation = -2.81984
 h_offset = -1.145
 
 [node name="Sprite2D" type="Sprite2D" parent="SimpleParticleEngine/Path2D/PathFollow2D"]
+y_sort_enabled = true
 rotation = 2.81984
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_u1wym")
